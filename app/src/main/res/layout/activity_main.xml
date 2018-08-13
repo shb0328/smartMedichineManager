@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hyebeen.myapplication.MainActivity">
+
+    <LinearLayout
+        android:layout_width="255dp"
+        android:layout_height="314dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="113dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/pills" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="69dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="1"
+                android:text="스마트 알약 보관함"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.621"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.293"
+                tools:text="스마트 알약 보관함" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginBottom="248dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.603"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="169dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/holo_blue_dark"
+                    android:text="1"
+                    android:textColor="@android:color/background_light"
+                    tools:layout_editor_absoluteX="128dp"
+                    tools:layout_editor_absoluteY="196dp" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/holo_blue_dark"
+                    android:text="3"
+                    android:textColor="@android:color/background_light"
+                    tools:layout_editor_absoluteX="128dp"
+                    tools:layout_editor_absoluteY="244dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="168dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/holo_blue_dark"
+                    android:text="2"
+                    android:textColor="@android:color/background_light"
+                    tools:layout_editor_absoluteX="216dp"
+                    tools:layout_editor_absoluteY="196dp" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/holo_blue_dark"
+                    android:text="4"
+                    android:textColor="@android:color/background_light"
+                    tools:layout_editor_absoluteX="216dp"
+                    tools:layout_editor_absoluteY="244dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
