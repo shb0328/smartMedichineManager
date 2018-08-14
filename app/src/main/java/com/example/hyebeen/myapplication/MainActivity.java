@@ -46,5 +46,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1_x);
             }
         });
+
+        b3 = (Button) findViewById(R.id.button3);
+        b3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //TODO:등록된 정보가 있다면,
+
+
+                //TODO:등록된 정보가 없다면,
+                Intent intent1_x = new Intent(getApplicationContext(), MediInfo3.class);
+                startActivity(intent1_x);
+            }
+        });
     }
 }
