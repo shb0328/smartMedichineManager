@@ -3,11 +3,16 @@ package com.example.hyebeen.myapplication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
+import butterknife.BindView;
 
 public class MediInfo3 extends AppCompatActivity {
 
@@ -157,9 +162,15 @@ public class MediInfo3 extends AppCompatActivity {
             }
         }; //리스트 생성
         testAdapter = new TestAdapter(this,list); //어댑터에 리스트 부착
-        listView //리스트뷰에 어댑터 부착
+        listView.setAdapter(testAdapter); //리스트뷰에 어댑터 부착
 
     }
 
+    @BindView(R.id.listview)
+    ListView listView;
+    @BindView(R.id.textSearch)
+    EditText editsearch;
+    @BindView(R.id.Layout_Internet)
+    RelativeLayout internetLayout;
 
 }
