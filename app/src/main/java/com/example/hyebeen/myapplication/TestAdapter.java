@@ -2,43 +2,31 @@ package com.example.hyebeen.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class TestAdapter extends ArrayAdapter {
+public class TestAdapter extends BaseAdapter {
 
     Context context;
     LayoutInflater inflater;
     private List<String> list = null; //검색 후 나오는 아이템들을 담은 리스트이다.
     private ArrayList<String> arrayList; //검색 가능한 아이템들을 모두 가지고 있는다
 
-    public TestAdapter(@NonNull Context context, int resource, @NonNull List<String> list) {
-        super(context, resource, list);
+    public TestAdapter(Context context, List<String> list) {
         this.context = context;
         this.list = list;
         inflater = LayoutInflater.from(context);
-        this.arrayList = new ArrayList();
+        this.arrayList = new ArrayList<String>();
         this.arrayList.addAll(list);
+
     }
-
-
-//
-//    public TestAdapter(Context context, List<String> list) {
-//        this.context = context;
-//        this.list = list;
-//        inflater = LayoutInflater.from(context);
-//        this.arrayList = new ArrayList<String>();
-//        this.arrayList.addAll(list);
-//
-//    }
 
     public class ViewHolder {
         TextView label;
