@@ -49,41 +49,32 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <EditText
+                <AutoCompleteTextView
                     android:id="@+id/textSearch"
-                    android:layout_width="236dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:hint="@string/search"
+                    android:layout_width="199dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="약 이름을 검색하세요"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btnSearch"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-                <ListView
-                    android:id="@+id/nameList"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:divider="#999999"
-                    android:dividerHeight="1dp">
-                </ListView>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btnSearch"
                     android:layout_width="58dp"
                     android:layout_height="62dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginEnd="48dp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:contentDescription="TODO"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.222"
-                    app:layout_constraintStart_toEndOf="@+id/textSearch"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/search1" />
             </android.support.constraint.ConstraintLayout>
 

@@ -166,11 +166,11 @@ public class MediInfo3 extends AppCompatActivity {
 
     }
 
-    @BindView(R.id.listview)
+//    @BindView(R.id.listview)
     ListView listView;
-    @BindView(R.id.textSearch)
-    EditText editsearch;
-    @BindView(R.id.Layout_Internet)
-    RelativeLayout internetLayout;
+//    @BindView(R.id.textSearch)
+//    EditText editsearch;
+//    @BindView(R.id.Layout_Internet)
+//    RelativeLayout internetLayout;
 
 }
