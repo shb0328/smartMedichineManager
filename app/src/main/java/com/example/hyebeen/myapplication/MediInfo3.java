@@ -1,34 +1,62 @@
 package com.example.hyebeen.myapplication;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import butterknife.BindView;
 
 public class MediInfo3 extends AppCompatActivity {
 
+    private Button btnSearch;
 
-    Button btnSearch;
+
+
+    private static final String TAG_JSON="medicine";
+    private static final String TAG_name = "name";
+    ArrayList<HashMap<String, String>> mArrayList;
+    String[] mediNameList;
+    String mJsonString;
+//    private TextView mTextViewResult;
+
+
 
     private EditText textSearch;        // 검색어를 입력할 Input 창
-
     private ArrayAdapter<String> adapter;
     private AutoCompleteTextView autoCompleteTextView;
-    String ex[];
+
+//    String ex[] =  {"apple", "approach", "appa", "apart", "banana"};
 
 
 
@@ -40,8 +68,8 @@ public class MediInfo3 extends AppCompatActivity {
         textSearch = (EditText) findViewById(R.id.textSearch);
         autoCompleteTextView = (AutoCompleteTextView)findViewById(R.id.textSearch);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,ex); //JSON 파일로 받아온 약이름 배열을 연결
-        autoCompleteTextView.setAdapter(adapter);
+//        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,ex); //JSON 파일로 받아온 약이름 배열을 연결
+//        autoCompleteTextView.setAdapter(adapter);
 
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         textSearch.addTextChangedListener(new TextWatcher() {
@@ -63,7 +91,168 @@ public class MediInfo3 extends AppCompatActivity {
 
 
 
+
+
+
+
+        GetData task = new GetData();
+        task.execute("http://172.30.1.27/getjson.php");
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
+        autoCompleteTextView.setAdapter(adapter);
     }
+
+
+
+
+    private class GetData extends AsyncTask<String, Void, String> {
+
+        ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(MediInfo3.this,
+                    "Please Wait", null, true, true);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+//            mTextViewResult.setText(result);
+//            Log.d(TAG, "response  - " + result);
+
+            if (result == null){
+
+//                mTextViewResult.setText(errorString);
+            }
+            else {
+
+                mJsonString = result;
+                showResult();
+//                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
+//                autoCompleteTextView.setAdapter(adapter);
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            String serverURL = strings[0];
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+//                Log.d(TAG, "InsertData: Error ", e);
+//                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+
+        private void showResult(){
+            try {
+                JSONObject jsonObject = new JSONObject(mJsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+                for(int i=0;i<jsonArray.length();i++){
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String name = item.getString(TAG_name);
+
+                    HashMap<String,String> hashMap = new HashMap<>();
+
+                    hashMap.put(TAG_name, name);
+
+                    mArrayList.add(hashMap);
+                }
+
+//                ListAdapter adapter = new SimpleAdapter(
+//                        MediInfo3.this, mArrayList, R.layout.item_list,
+//                        new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
+//                        new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
+//                );
+
+//                mlistView.setAdapter(adapter);
+
+
+                int size = 0;
+                for(int i=0;mArrayList.get(i) != null;i++,size++);
+                mediNameList = new String[size];
+
+                for(int i=0; i<size;i++){
+                    for (String mapkey : mArrayList.get(i).keySet()){
+                        mediNameList[i]=mArrayList.get(i).get(mapkey);
+                    }
+
+                }
+
+//                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
+//                autoCompleteTextView.setAdapter(adapter);
+
+
+
+            } catch (JSONException e) {
+
+//                Log.d(TAG, "showResult : ", e);
+            }
+
+
+
+        }
+
+
+
+}
+
+
+
+
+
+
 
     public void init() {
 

@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     Button b1;
     Button b2;
     Button b3;
-    Button b4;
+//    Button b4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //TODO:등록된 정보가 없다면,
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG);
                 Intent intent1_x = new Intent(getApplicationContext(), MediInfo3.class);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
                 startActivity(intent1_x);
             }
         });

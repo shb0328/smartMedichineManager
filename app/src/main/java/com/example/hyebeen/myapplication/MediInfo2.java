@@ -11,8 +11,8 @@ import android.widget.EditText;
 
 public class MediInfo2 extends AppCompatActivity {
 
-    Button btnSearch;
-    Button btnReg;
+    private Button btnSearch;
+    private Button btnReg;
 
     private EditText textSearch;        // 검색어를 입력할 Input 창
 
