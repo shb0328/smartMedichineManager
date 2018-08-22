@@ -71,6 +71,15 @@ public class MediInfo3 extends AppCompatActivity {
 //        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,ex); //JSON 파일로 받아온 약이름 배열을 연결
 //        autoCompleteTextView.setAdapter(adapter);
 
+
+        GetData task = new GetData();
+        task.execute("http://172.30.1.27/getjson.php");
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
+        autoCompleteTextView.setAdapter(adapter);
+
+
+
         // input창에 검색어를 입력시 "addTextChangedListener" 이벤트 리스너를 정의한다.
         textSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -88,18 +97,6 @@ public class MediInfo3 extends AppCompatActivity {
                 String text = autoCompleteTextView.getText().toString();
             }
         });
-
-
-
-
-
-
-
-        GetData task = new GetData();
-        task.execute("http://172.30.1.27/getjson.php");
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
-        autoCompleteTextView.setAdapter(adapter);
     }
 
 
@@ -219,8 +216,10 @@ public class MediInfo3 extends AppCompatActivity {
 //                mlistView.setAdapter(adapter);
 
 
-                int size = 0;
-                for(int i=0;mArrayList.get(i) != null;i++,size++);
+//                int size = 0;
+//                for(int i=0;mArrayList.get(i) != null;i++,size++); //제일 의심스러운 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+               int size = 3;
                 mediNameList = new String[size];
 
                 for(int i=0; i<size;i++){
