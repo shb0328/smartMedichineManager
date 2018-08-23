@@ -253,6 +253,7 @@ public class MediInfo3 extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(mJsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
                 int size;
+                mArrayList = new ArrayList<>();
                 for (size = 0; size < jsonArray.length(); size++) {
 
                     JSONObject item = jsonArray.getJSONObject(size);
@@ -263,7 +264,7 @@ public class MediInfo3 extends AppCompatActivity {
 
                     hashMap.put(TAG_name, name);
 
-                    mArrayList = new ArrayList<>();
+//                    mArrayList = new ArrayList<>();
                     mArrayList.add(hashMap);
                 }
 
