@@ -133,7 +133,7 @@ public class MediInfo3 extends AppCompatActivity {
             else {
 
                 mJsonString = result;
-                showResult();
+                mediNameList = showResult();
 //                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
 //                autoCompleteTextView.setAdapter(adapter);
             }
@@ -192,18 +192,18 @@ public class MediInfo3 extends AppCompatActivity {
 
         }
 
-        private void showResult(){
+        private String[] showResult() {
             try {
                 JSONObject jsonObject = new JSONObject(mJsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-                 int size;
-                for(size=0;size<jsonArray.length();size++){
+                int size;
+                for (size = 0; size < jsonArray.length(); size++) {
 
                     JSONObject item = jsonArray.getJSONObject(size);
 
                     String name = item.getString(TAG_name);
 
-                    HashMap<String,String> hashMap = new HashMap<>();
+                    HashMap<String, String> hashMap = new HashMap<>();
 
                     hashMap.put(TAG_name, name);
 
@@ -223,11 +223,12 @@ public class MediInfo3 extends AppCompatActivity {
 //                for(int i=0;mArrayList.get(i) != null;i++,size++); //제일 의심스러운 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //               int size = 3;
-                mediNameList = new String[size+1];
+                String[] mediNameList_tmp = new String[size + 1];
 
-                for(int i=0; i<size+1;i++){
-                    for (String mapkey : mArrayList.get(i).keySet()){
-                        mediNameList[i]=mArrayList.get(i).get(mapkey);
+                for (int i = 0; i < size + 1; i++) {
+
+                    for (String mapkey : mArrayList.get(i).keySet()) {
+                        mediNameList_tmp[i] = mArrayList.get(i).get(mapkey);
                     }
 
                 }
@@ -235,30 +236,19 @@ public class MediInfo3 extends AppCompatActivity {
 //                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
 //                autoCompleteTextView.setAdapter(adapter);
 
-
+                return mediNameList_tmp;
 
             } catch (JSONException e) {
 
+                return null;
 //                Log.d(TAG, "showResult : ", e);
             }
 
 
-
         }
-
-
-
 }
 
 
 
-
-
-
-
-    public void init() {
-
-
-    }
 
 }
