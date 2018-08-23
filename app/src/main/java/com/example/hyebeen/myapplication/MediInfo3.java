@@ -42,6 +42,8 @@ public class MediInfo3 extends AppCompatActivity {
     private Button btnSearch;
 
 
+    private static String IP_ADDRESS = "169.254.151.238";
+
 
     private static final String TAG_JSON="medicine";
     private static final String TAG_name = "name";
@@ -55,8 +57,10 @@ public class MediInfo3 extends AppCompatActivity {
     private EditText textSearch;        // 검색어를 입력할 Input 창
     private ArrayAdapter<String> adapter;
     private AutoCompleteTextView autoCompleteTextView;
-
 //    String ex[] =  {"apple", "approach", "appa", "apart", "banana"};
+
+
+
 
 
 
@@ -73,7 +77,7 @@ public class MediInfo3 extends AppCompatActivity {
 
 
         GetData task = new GetData();
-        task.execute("http://172.30.1.27/getjson.php");
+        task.execute("http://"+IP_ADDRESS+"/getjson.php");
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
         autoCompleteTextView.setAdapter(adapter);
@@ -175,7 +179,6 @@ public class MediInfo3 extends AppCompatActivity {
 
                 bufferedReader.close();
 
-
                 return sb.toString().trim();
 
 
@@ -193,10 +196,10 @@ public class MediInfo3 extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(mJsonString);
                 JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                 int size;
+                for(size=0;size<jsonArray.length();size++){
 
-                for(int i=0;i<jsonArray.length();i++){
-
-                    JSONObject item = jsonArray.getJSONObject(i);
+                    JSONObject item = jsonArray.getJSONObject(size);
 
                     String name = item.getString(TAG_name);
 
@@ -219,10 +222,10 @@ public class MediInfo3 extends AppCompatActivity {
 //                int size = 0;
 //                for(int i=0;mArrayList.get(i) != null;i++,size++); //제일 의심스러운 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-               int size = 3;
-                mediNameList = new String[size];
+//               int size = 3;
+                mediNameList = new String[size+1];
 
-                for(int i=0; i<size;i++){
+                for(int i=0; i<size+1;i++){
                     for (String mapkey : mArrayList.get(i).keySet()){
                         mediNameList[i]=mArrayList.get(i).get(mapkey);
                     }
