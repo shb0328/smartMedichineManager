@@ -1,6 +1,7 @@
 package com.example.hyebeen.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -57,14 +60,17 @@ public class MediInfo3 extends AppCompatActivity {
     private EditText textSearch;        // 검색어를 입력할 Input 창
     private ArrayAdapter<String> adapter;
     private AutoCompleteTextView autoCompleteTextView;
-//    String ex[] =  {"apple", "approach", "appa", "apart", "banana"};
 
 
 
+    //test용
+    private Button testbtn;
+    private ArrayAdapter<String> adapter2;
+    String ex[] =  {"apple", "approach", "appa", "apart", "banana"};
 
 
 
-    protected void onCreate(Bundle saveInstanceState) {
+    protected void onCreate(final Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.medi3_test_search);
 
@@ -76,11 +82,26 @@ public class MediInfo3 extends AppCompatActivity {
 //        autoCompleteTextView.setAdapter(adapter);
 
 
-        GetData task = new GetData();
-        task.execute("http://"+IP_ADDRESS+"/getjson.php");
+//        GetData task = new GetData();
+//        task.execute("http://"+IP_ADDRESS+"/getjson.php");
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
-        autoCompleteTextView.setAdapter(adapter);
+
+
+
+
+
+
+
+        //test
+        testbtn = (Button)findViewById(R.id.btnReg);
+        adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,ex);
+        autoCompleteTextView.setAdapter(adapter2);
+        testbtn.setOnClickListener(new MyOnClickListener(this));
+
+
+
+
+
 
 
 
@@ -102,6 +123,41 @@ public class MediInfo3 extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
+
+
+
+    //test
+    class MyOnClickListener implements OnClickListener{
+
+
+        Context context;
+
+        public MyOnClickListener(Context context){
+            super();
+            this.context = context;
+
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            GetData task = new GetData();
+            task.execute("http://"+IP_ADDRESS+"/getjson.php");
+            adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
+            autoCompleteTextView.setAdapter(adapter);
+        }
+    }//test end
+
+
+
+
+
 
 
 
@@ -207,6 +263,7 @@ public class MediInfo3 extends AppCompatActivity {
 
                     hashMap.put(TAG_name, name);
 
+                    mArrayList = new ArrayList<>();
                     mArrayList.add(hashMap);
                 }
 
