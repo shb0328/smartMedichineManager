@@ -264,23 +264,12 @@ public class MediInfo3 extends AppCompatActivity {
 
                     hashMap.put(TAG_name, name);
 
-//                    mArrayList = new ArrayList<>();
                     mArrayList.add(hashMap);
                 }
 
-//                ListAdapter adapter = new SimpleAdapter(
-//                        MediInfo3.this, mArrayList, R.layout.item_list,
-//                        new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
-//                        new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
-//                );
-
-//                mlistView.setAdapter(adapter);
 
 
-//                int size = 0;
-//                for(int i=0;mArrayList.get(i) != null;i++,size++); //제일 의심스러운 부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-//               int size = 3;
                 String[] mediNameList_tmp = new String[size + 1];
 
                 for (int i = 0; i < size + 1; i++) {
