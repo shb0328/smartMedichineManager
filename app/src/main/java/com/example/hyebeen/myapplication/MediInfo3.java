@@ -45,14 +45,20 @@ public class MediInfo3 extends AppCompatActivity {
     private Button btnSearch;
 
 
-    private static String IP_ADDRESS = "169.254.151.238";
+//    private static String IP_ADDRESS = "169.254.151.238";
 
 
     private static final String TAG_JSON="medicine";
     private static final String TAG_name = "name";
-    ArrayList<HashMap<String, String>> mArrayList;
+    ArrayList<HashMap<String, String>> mArrayList = new ArrayList<>();
     String[] mediNameList;
-    String mJsonString;
+    String mJsonString =  "{'medicine':"+
+            "[{'name':'배트맨'},"+
+            "{'name':'슈퍼맨'},"+
+            "{'name':'앤트맨'}]"+
+            "}";
+
+
 //    private TextView mTextViewResult;
 
 
@@ -64,6 +70,7 @@ public class MediInfo3 extends AppCompatActivity {
 
 
     //test용
+
     private Button testbtn;
     private ArrayAdapter<String> adapter2;
     String ex[] =  {"apple", "approach", "appa", "apart", "banana"};
@@ -93,10 +100,46 @@ public class MediInfo3 extends AppCompatActivity {
 
 
         //test
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+            int size=0;
+//            mArrayList = new ArrayList<>();
+            for (int i = size; i < jsonArray.length(); i++) {
+                JSONObject item = jsonArray.getJSONObject(i);
+                String name = item.getString(TAG_name);
+
+                Log.d("json parser",name);
+
+                HashMap<String, String> hashMap = new HashMap<>();
+                hashMap.put(TAG_name, name);
+                mArrayList.add(hashMap);
+
+                size = i;
+            }
+
+            String[] mediNameList_tmp = new String[size + 1];
+
+            for (int i = 0; i < size + 1; i++) {
+                for (String mapkey : mArrayList.get(i).keySet()) {
+                    mediNameList_tmp[i] = mArrayList.get(i).get(mapkey);
+                }
+            }
+
+            mediNameList = mediNameList_tmp;
+        } catch (JSONException e) {
+
+        }
+
+        ex = mediNameList;
+
+
         testbtn = (Button)findViewById(R.id.btnReg);
         adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,ex);
         autoCompleteTextView.setAdapter(adapter2);
         testbtn.setOnClickListener(new MyOnClickListener(this));
+
+        //test end
 
 
 
@@ -147,8 +190,8 @@ public class MediInfo3 extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            GetData task = new GetData();
-            task.execute("http://"+IP_ADDRESS+"/getjson.php");
+//            GetData task = new GetData();
+//            task.execute("http://"+IP_ADDRESS+"/getjson.php");
             adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item,mediNameList); //JSON 파일로 받아온 약이름 배열을 연결
             autoCompleteTextView.setAdapter(adapter);
         }
