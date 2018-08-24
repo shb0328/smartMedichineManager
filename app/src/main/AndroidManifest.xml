@@ -21,7 +21,7 @@
 
         <activity android:name=".MediInfo1"></activity>
         <activity android:name=".MediInfo2"></activity>
-        <activity android:name=".MediInfo3"></activity>
+        <activity android:name=".MediInfo4"></activity>
     </application>
 
 </manifest>

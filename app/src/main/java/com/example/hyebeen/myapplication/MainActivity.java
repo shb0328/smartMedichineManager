@@ -54,8 +54,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        b3 = (Button) findViewById(R.id.button3);
-        b3.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+
+
+
+        b4 = (Button) findViewById(R.id.button4);
+        b4.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -64,7 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //TODO:등록된 정보가 없다면,
-                Intent intent1_x = new Intent(getApplicationContext(), MediInfo3.class);
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                Intent intent1_x = new Intent(getApplicationContext(), MediInfo4.class);
                 startActivity(intent1_x);
             }
         });
