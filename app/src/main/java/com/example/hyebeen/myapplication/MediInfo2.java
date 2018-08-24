@@ -21,7 +21,7 @@ public class MediInfo2 extends AppCompatActivity {
 //    private List<String> list;          // 데이터를 넣은 리스트변수
 //    private ListView nameList;          // 검색을 보여줄 리스트변수
     private EditText textSearch;        // 검색어를 입력할 Input 창
-//    private SearchAdapter adapter;      // 리스트뷰에 연결할 아답터
+
 //    private ArrayList<String> arraylist;
 
     private ArrayAdapter<String> adapter2;
@@ -53,7 +53,7 @@ public class MediInfo2 extends AppCompatActivity {
 //        arraylist.addAll(list);
 //
 //        // 리스트에 연동될 아답터를 생성한다.
-//        adapter = new SearchAdapter(list, this);
+
 //
 //        // 리스트뷰에 아답터를 연결한다.
 //        nameList.setAdapter(adapter);
