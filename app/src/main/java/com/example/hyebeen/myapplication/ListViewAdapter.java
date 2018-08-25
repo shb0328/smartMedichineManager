@@ -14,10 +14,10 @@ import java.util.Locale;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    Context context;
-    LayoutInflater inflater;
-    List<MediData> mediDataList;
-    ArrayList<MediData> mediDataArray;
+    private Context context;
+    private LayoutInflater inflater;
+    private List<MediData> mediDataList;
+    private ArrayList<MediData> mediDataArray;
 
     public ListViewAdapter(Context context, List<MediData> mediDataList) {
         this.context = context;
