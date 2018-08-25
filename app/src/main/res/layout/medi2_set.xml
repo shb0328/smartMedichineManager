@@ -60,28 +60,27 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1">
 
                     <AutoCompleteTextView
                         android:id="@+id/textSearch"
-                        android:layout_width="210dp"
+                        android:layout_width="193dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="40dp"
                         android:layout_marginTop="8dp"
-                        android:hint="약 이름을 검색하세요"
+                        android:hint="약 이름"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.3" />
 
                     <ImageButton
                         android:id="@+id/btnSearch"
                         android:layout_width="58dp"
                         android:layout_height="62dp"
                         android:layout_marginBottom="4dp"
-                        android:layout_marginEnd="48dp"
+                        android:layout_marginEnd="36dp"
                         android:layout_marginTop="8dp"
                         android:layout_weight="1"
                         android:contentDescription="TODO"
