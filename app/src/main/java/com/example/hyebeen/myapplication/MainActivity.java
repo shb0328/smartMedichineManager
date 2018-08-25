@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //TODO:등록된 정보가 없다면,
-                Intent intent1_x = new Intent(getApplicationContext(), MediInfo3.class);
-                startActivity(intent1_x);
+//                Intent intent1_x = new Intent(getApplicationContext(), MediInfo3.class);
+//                startActivity(intent1_x);
             }
         });
     }
