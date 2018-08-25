@@ -5,4 +5,5 @@
     <string name="search">search</string>
     <string name="name2">2번 알약</string>
     <string name="name1">1번 알약</string>
+    <string name="searchMedi">약을 검색하세요</string>
 </resources>
