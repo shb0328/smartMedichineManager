@@ -1,6 +1,7 @@
 package com.example.hyebeen.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,9 +27,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import io.realm.Realm;
-
-public class MediInfo2_setting extends AppCompatActivity {
+public class Medi_setting extends AppCompatActivity {
 
     String[] items={"","","","","","","","","","","","","","","","","","","","","","","","",""
             ,"","","","","","","","","","","","","","","","","","","","","","","",""};
@@ -37,13 +36,15 @@ public class MediInfo2_setting extends AppCompatActivity {
     private static String IP_ADDRESS = "192.168.0.225";
     private static String TAG = "phptest";
 
-    private ArrayList<MediData> mArrayList;
+    private ArrayList<MediDataTemp> mArrayList;
     private String mJsonString;
 
 
     //local DB
 //    private Realm realm;
-//    private MediDBControler mediDataControler;
+//    private MediDBControler mediDBControler;
+    private Intent intent = getIntent();
+    private MediData mediData;
 
 
     @Override
@@ -51,7 +52,7 @@ public class MediInfo2_setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medi2_set);
 
-
+        mediData = (MediData) intent.getParcelableExtra("MediData");
 
         final boolean[] nameCheck = {false};
         final AutoCompleteTextView edit = (AutoCompleteTextView) findViewById(R.id.edit);
@@ -123,7 +124,7 @@ public class MediInfo2_setting extends AppCompatActivity {
                 final int onesize =one.getText().toString().length();
                 final int namesize = edit.getText().toString().length();
 
-                MediData dataNum=new MediData();
+//                MediData dataNum=new MediData();
 
                 if(allsize == 0||onesize==0||namesize==0){
                     Toast.makeText(getApplicationContext(),"값을 입력해 주세요.",Toast.LENGTH_LONG).show();
@@ -144,21 +145,29 @@ public class MediInfo2_setting extends AppCompatActivity {
                         //realm
 //                        realm = Realm.getDefaultInstance(); //사용준비
 //                        mediDataControler = new MediDBControler();
+//
+//                        //만약 파일이 존재한다면 전체 삭제
+//                        if (mediDataControler.isCheckClassFile(realm)){
+//                            mediDataControler.clear(realm);
+//                        }
+//
+//                        //DB에 약정보 추가
+//                        mediDataControler.createMediDB(realm,
+//                                mArrayList.get(num).getMember_name(),
+//                                mArrayList.get(num).getMember_info(),
+//                                mArrayList.get(num).getMember_caution(),
+//                                mArrayList.get(num).getMember_donot(),
+//                                Integer.parseInt(all.getText().toString()),
+//                                Integer.parseInt(one.getText().toString())
+//                                );
 
-                        //만약 파일이 존재한다면 전체 삭제
-                        if (mediDataControler.isCheckClassFile(realm)){
-                            mediDataControler.clear(realm);
-                        }
-
-                        //DB에 약정보 추가
-                        mediDataControler.createMediDB(realm,
-                                mArrayList.get(num).getMember_name(),
-                                mArrayList.get(num).getMember_info(),
-                                mArrayList.get(num).getMember_caution(),
-                                mArrayList.get(num).getMember_donot(),
-                                Integer.parseInt(all.getText().toString()),
-                                Integer.parseInt(one.getText().toString())
-                                );
+                        mediData.setMember_name( mArrayList.get(num).getMember_name());
+                        mediData.setMember_info(mArrayList.get(num).getMember_info());
+                        mediData.setMember_caution(mArrayList.get(num).getMember_caution());
+                        mediData.setMember_donot(mArrayList.get(num).getMember_donot());
+                        mediData.setMember_all(Integer.parseInt(all.getText().toString()));
+                        mediData.setMember_one(Integer.parseInt(one.getText().toString()));
+                        mediData.setCnt(Integer.parseInt(all.getText().toString())/Integer.parseInt(one.getText().toString()));
                         //realm end
 
 
@@ -237,7 +246,7 @@ public class MediInfo2_setting extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(MediInfo2_setting.this,
+            progressDialog = ProgressDialog.show(Medi_setting.this,
                     "Please Wait", null, true, true);
         }
 
@@ -350,7 +359,7 @@ public class MediInfo2_setting extends AppCompatActivity {
                 String caution = item.getString(TAG_caution);
                 String donot = item.getString(TAG_donot);
 
-                MediData mediData = new MediData();
+                MediDataTemp mediData = new MediDataTemp();
 
                 mediData.setMember_info(info);
                 mediData.setMember_name(name);
