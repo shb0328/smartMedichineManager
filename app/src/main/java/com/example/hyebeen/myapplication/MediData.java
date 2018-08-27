@@ -1,9 +1,6 @@
 package com.example.hyebeen.myapplication;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class MediData implements Parcelable {
+public class MediData{
 
     private String name;
     private String info;
@@ -63,51 +60,4 @@ public class MediData implements Parcelable {
         this.cnt = cnt;
     }
 
-
-
-
-
-
-
-    //intent로 객체 전달 하기 위해서
-
-    public static final Creator<MediData> CREATOR = new Creator<MediData>() {
-        @Override
-        public MediData createFromParcel(Parcel in) {
-            return new MediData(in);
-        }
-
-        @Override
-        public MediData[] newArray(int size) {
-            return new MediData[size];
-        }
-    };
-
-
-    private MediData(Parcel in) {
-        this.name = in.readString();
-        this.info = in.readString();
-        this.caution = in.readString();
-        this.donot = in.readString();
-        this.all = in.readInt();
-        this.one = in.readInt();
-        this.cnt = in.readInt();
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.name);
-        dest.writeString(this.info);
-        dest.writeString(this.caution);
-        dest.writeString(this.donot);
-        dest.writeInt(this.all);
-        dest.writeInt(this.one);
-        dest.writeInt(this.cnt);
-
-    }
 }
