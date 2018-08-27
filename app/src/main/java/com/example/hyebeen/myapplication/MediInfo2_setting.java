@@ -139,6 +139,9 @@ public class MediInfo2_setting extends AppCompatActivity {
                             }
                         }
 
+
+
+                        //realm
                         realm = Realm.getDefaultInstance(); //사용준비
                         mediDataControler = new MediDataControler();
 
@@ -156,6 +159,9 @@ public class MediInfo2_setting extends AppCompatActivity {
                                 Integer.parseInt(all.getText().toString()),
                                 Integer.parseInt(one.getText().toString())
                                 );
+                        //realm end
+
+
 
 
 //                        dataNum.setMember_info(mArrayList.get(num).getMember_info());
