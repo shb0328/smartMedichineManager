@@ -26,6 +26,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import io.realm.Realm;
+
 public class MediInfo2_setting extends AppCompatActivity {
 
     String[] items={"","","","","","","","","","","","","","","","","","","","","","","","",""
@@ -39,6 +41,9 @@ public class MediInfo2_setting extends AppCompatActivity {
     private String mJsonString;
 
 
+    //local DB
+    private Realm realm;
+    private MediDataControler mediDataControler;
 
 
     @Override
@@ -134,13 +139,32 @@ public class MediInfo2_setting extends AppCompatActivity {
                             }
                         }
 
-                        dataNum.setMember_info(mArrayList.get(num).getMember_info());
-                        dataNum.setMember_all(Integer.parseInt(all.getText().toString()));
-                        dataNum.setMember_one(Integer.parseInt(one.getText().toString()));
-                        dataNum.setMember_name(edit.getText().toString());
+                        realm = Realm.getDefaultInstance(); //사용준비
+                        mediDataControler = new MediDataControler();
+
+                        //만약 파일이 존재한다면 전체 삭제
+                        if (mediDataControler.isCheckClassFile(realm)){
+                            mediDataControler.clear(realm);
+                        }
+
+                        //DB에 약정보 추가
+                        mediDataControler.createMediData(realm,
+                                mArrayList.get(num).getMember_name(),
+                                mArrayList.get(num).getMember_info(),
+                                mArrayList.get(num).getMember_caution(),
+                                mArrayList.get(num).getMember_donot(),
+                                Integer.parseInt(all.getText().toString()),
+                                Integer.parseInt(one.getText().toString())
+                                );
+
+
+//                        dataNum.setMember_info(mArrayList.get(num).getMember_info());
+//                        dataNum.setMember_all(Integer.parseInt(all.getText().toString()));
+//                        dataNum.setMember_one(Integer.parseInt(one.getText().toString()));
+//                        dataNum.setMember_name(edit.getText().toString());
 
                         phpDown task = new phpDown();
-                        task.execute("http://" + IP_ADDRESS + "/reset.php");
+                        task.execute("http://" + IP_ADDRESS + "/reset2.php");
 
 
                         Toast.makeText(getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
@@ -324,6 +348,8 @@ public class MediInfo2_setting extends AppCompatActivity {
 
                 mediData.setMember_info(info);
                 mediData.setMember_name(name);
+                mediData.setMember_caution(caution);
+                mediData.setMember_donot(donot);
 
 
                 items[i]=name;
