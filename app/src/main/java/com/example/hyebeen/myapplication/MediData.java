@@ -7,6 +7,7 @@ public class MediData extends RealmObject {
     private String info;
     private String name;
     private String caution;
+    private  String donot;
     private int all;
     private int one;
     private int cnt;
@@ -39,6 +40,15 @@ public class MediData extends RealmObject {
     public void setMember_caution(String member_take) {
         this.caution = member_take;
     }
+
+    public String getMember_donot() {
+        return donot;
+    }
+
+    public void setMember_donot(String donot) {
+        this.donot = donot;
+    }
+
 
     public void setMember_one(int member_one){this.one =  member_one;}
 
