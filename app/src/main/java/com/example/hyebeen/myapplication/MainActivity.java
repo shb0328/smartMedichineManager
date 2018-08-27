@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import io.realm.Realm;
+
 public class MainActivity extends AppCompatActivity {
 
     Button b1;
@@ -14,10 +16,16 @@ public class MainActivity extends AppCompatActivity {
     Button b3;
     Button b4;
 
+    //local DB
+    private Realm realm;
+    private AllMediDatasControler allMediDatasControler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         b1 = (Button) findViewById(R.id.button1);
         b1.setOnClickListener(new View.OnClickListener() {
