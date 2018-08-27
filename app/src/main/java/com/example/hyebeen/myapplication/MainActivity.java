@@ -3,7 +3,6 @@ package com.example.hyebeen.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 //TODO:등록된 정보가 없다면,
                 Toast.makeText(getApplicationContext(),
                         "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
-                Intent intent1_x = new Intent(getApplicationContext(), MediInfo2.class);
+                Intent intent1_x = new Intent(getApplicationContext(), MediInfo2_setting.class);
                 startActivity(intent1_x);
             }
         });
