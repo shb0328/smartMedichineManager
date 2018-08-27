@@ -42,8 +42,8 @@ public class MediInfo2_setting extends AppCompatActivity {
 
 
     //local DB
-    private Realm realm;
-    private MediDataControler mediDataControler;
+//    private Realm realm;
+//    private MediDBControler mediDataControler;
 
 
     @Override
@@ -142,8 +142,8 @@ public class MediInfo2_setting extends AppCompatActivity {
 
 
                         //realm
-                        realm = Realm.getDefaultInstance(); //사용준비
-                        mediDataControler = new MediDataControler();
+//                        realm = Realm.getDefaultInstance(); //사용준비
+//                        mediDataControler = new MediDBControler();
 
                         //만약 파일이 존재한다면 전체 삭제
                         if (mediDataControler.isCheckClassFile(realm)){
@@ -151,7 +151,7 @@ public class MediInfo2_setting extends AppCompatActivity {
                         }
 
                         //DB에 약정보 추가
-                        mediDataControler.createMediData(realm,
+                        mediDataControler.createMediDB(realm,
                                 mArrayList.get(num).getMember_name(),
                                 mArrayList.get(num).getMember_info(),
                                 mArrayList.get(num).getMember_caution(),
