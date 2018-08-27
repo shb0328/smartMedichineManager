@@ -39,12 +39,7 @@ public class MediInfo2 extends AppCompatActivity {
     private static String IP_ADDRESS = "192.168.0.225";
     private static String TAG = "phptest";
 
-    private EditText mEditTextName;
-    private EditText mEditTextCountry;
-    private TextView mTextViewResult;
     private ArrayList<MediData> mArrayList;
-    private UsersAdapter mAdapter;
-    private EditText mEditTextSearchKeyword;
     private String mJsonString;
 
 
@@ -57,14 +52,26 @@ public class MediInfo2 extends AppCompatActivity {
 
 
 
-
+        final boolean[] nameCheck = {false};
         final AutoCompleteTextView edit = (AutoCompleteTextView) findViewById(R.id.edit);
+        edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        //mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
-        //mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                nameCheck[0] = false;
+            }
+        });
 
         mArrayList = new ArrayList<>();
-        mAdapter = new UsersAdapter(this, mArrayList);
 
         final TextView all=(TextView)findViewById(R.id.all);
         final TextView one=(TextView)findViewById(R.id.one);
@@ -83,7 +90,7 @@ public class MediInfo2 extends AppCompatActivity {
 
         Button check=(Button)findViewById(R.id.check);
 
-        final boolean[] nameCheck = {false};
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +100,9 @@ public class MediInfo2 extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "약이 확인 되었습니다.", Toast.LENGTH_SHORT).show();
                         nameCheck[0] = true;
                         break;
+                    }
+                    else {
+                        nameCheck[0] = false;
                     }
                 }
                 if(nameCheck[0]==false)
@@ -135,6 +145,9 @@ public class MediInfo2 extends AppCompatActivity {
 
                         phpDown task = new phpDown();
                         task.execute("http://" + IP_ADDRESS + "/reset.php");
+
+
+                        Toast.makeText(getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -182,7 +195,6 @@ public class MediInfo2 extends AppCompatActivity {
 
         protected void onPostExecute(String str){
 
-            Toast.makeText(getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
         }
 
 
@@ -321,7 +333,6 @@ public class MediInfo2 extends AppCompatActivity {
                 items[i]=name;
 
                 mArrayList.add(mediData);
-                mAdapter.notifyDataSetChanged();
             }
 
         } catch (JSONException e) {
