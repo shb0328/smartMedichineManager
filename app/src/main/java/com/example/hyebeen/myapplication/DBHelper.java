@@ -166,4 +166,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return "찾을 수 없습니다.";
     }
+
+    public int findone(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(0)==num)
+                return cursor.getInt(6);
+        }
+        return 0000;
+    }
 }
