@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MediInfo2 extends AppCompatActivity {
 
 
     //---------------View------------------//
+    private TextView num;
     private TextView mediName;
     private TextView mediInfo;
     private ImageView imageView;
@@ -42,14 +45,28 @@ public class MediInfo2 extends AppCompatActivity {
 
         //-----------------findViewByld-------------------//
 
+        num=(TextView)findViewById(R.id.num);
         mediName = (TextView) findViewById(R.id.medi2_name);
         mediInfo = (TextView) findViewById(R.id.medi2_info2);
         imageView = (ImageView) findViewById(R.id.imageView);
-        one = (TextView) findViewById(R.id.one);
-        all = (TextView) findViewById(R.id.all);
+        one = (TextView) findViewById(R.id.eat_num2);
+        all = (TextView) findViewById(R.id.total_num2);
         cautionButton = (Button) findViewById(R.id.cautionButton);
         donotButton = (Button) findViewById(R.id.donotButton);
         resetButton = (Button) findViewById(R.id.resetButton);
+
+        //
+        num.setText(Integer.toString(buttonNum));
+        mediName.setText(dbHelper.findname(buttonNum));
+        mediInfo.setText(dbHelper.findinfo(buttonNum));
+        all.setText(Integer.toString(dbHelper.findall(buttonNum)));
+
+
+
+
+
+
+        //
 
 
         //--------------------Listener--------------------//
@@ -78,6 +95,7 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:RESET
+                dbHelper.delete(buttonNum);
             }
         });
 

@@ -44,10 +44,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void delete(String item) {
+    public void delete(int num) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM MONEYBOOKS WHERE item='" + item + "';");
+        db.execSQL("DELETE FROM MONEYBOOKS WHERE num=" + num + ";");
         db.close();
     }
 
@@ -127,5 +127,29 @@ public class DBHelper extends SQLiteOpenHelper {
                 return cursor.getString(5);
         }
         return "찾을 수 없습니다.";
+    }
+
+    public String findname(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(1)==num)
+                return cursor.getString(2);
+        }
+        return "찾을 수 없습니다.";
+    }
+
+    public int findall(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(1)==num)
+                return cursor.getInt(6);
+        }
+        return 0000;
     }
 }
