@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MediInfo2 extends AppCompatActivity {
 
@@ -50,12 +51,13 @@ public class MediInfo2 extends AppCompatActivity {
             }
         });
 
-//        RealmResults<MediData> mediData = realm.where(MediData.class)
-//                .equalTo("num", 2)
-//                .findAll();
+        RealmResults<MediData> mediDatas = realm.where(MediData.class)
+                .equalTo("num", 2)
+                .findAll();
 //        MediData mediData = mediDataControler.;
 
-        mediName.setText("error");
+        MediData mediData = mediDatas.where().equalTo("num",2).findAll();
+        mediName.setText(mediData.getMember_name());
 
     }
 }

@@ -9,6 +9,8 @@ import io.realm.Realm;
 
 public class MediDataControler implements Serializable{
 
+
+    Realm realm;
     private int num;
 
     private String returnInfo ="";
@@ -19,8 +21,11 @@ public class MediDataControler implements Serializable{
     private int returnOne = 0;
     private int returnCnt = 0;
 
+    public MediDataControler(Realm realm) {
+        this.realm = realm;
+    }
     //DB생성!
-    public void createMediData(Realm realm,final int num, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+    public void createMediData(final int num, final String name, final String info, final String caution, final String donot, final int all, final int one) {
         Log.d("테스트","DB생성");
 
         realm.executeTransaction(new Realm.Transaction() {
@@ -43,7 +48,7 @@ public class MediDataControler implements Serializable{
 
 
     //DB 에 내용이 있는지 체크 (파일이 존재하는지 확인)
-    public boolean isCheckClassFile(Realm realm) {
+    public boolean isCheckClassFile() {
         final Boolean[] result = {false};
         realm.executeTransaction(new Realm.Transaction() {
             @Override

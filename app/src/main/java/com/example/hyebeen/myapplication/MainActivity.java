@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         realm = Realm.getDefaultInstance(); //사용준비
-        mediDataControler = new MediDataControler();
+        mediDataControler = new MediDataControler(realm);
 
 
         //button
@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mediDataControler.isCheckClassFile(realm)){
+                if(mediDataControler.isCheckClassFile()){
                     //TODO:등록된 정보가 있다면,
-                    Intent intent_o = new Intent(getApplicationContext(), MediInfo1.class);
+                    Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
                     intent_o.putExtra("MediDataControler", mediDataControler); //db존재
                     startActivity(intent_o);
                 }
@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("ButtonNum",b2.getText().toString());
-//                    bundle.putSerializable("MediDataControler", mediDataControler);
-//                    intent_x.putExtras(bundle);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ButtonNum",b2.getText().toString());
+                    bundle.putSerializable("MediDataControler", mediDataControler);
+                    intent_x.putExtras(bundle);
 //                    intent_x.putExtra("MediDataControler", mediDataControler); //null
-                    intent_x.putExtra("ButtonNum",Integer.parseInt(b2.getText().toString()));
+//                    intent_x.putExtra("ButtonNum",Integer.parseInt(b2.getText().toString()));
                     startActivity(intent_x);
                 }
 

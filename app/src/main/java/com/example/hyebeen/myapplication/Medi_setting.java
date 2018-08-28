@@ -45,7 +45,7 @@ public class Medi_setting extends AppCompatActivity {
     //local DB
     private Realm realm;
     private Intent intent;
-    private MediDataControler mediDataControler = new MediDataControler();
+    private MediDataControler mediDataControler = new MediDataControler(realm);
     private int buttonNum=0;
 
 
@@ -181,18 +181,18 @@ public class Medi_setting extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"intent 전달 에러",Toast.LENGTH_LONG);
                                 break;
                             case 1:
-                                mediDataControler.createMediData(realm,buttonNum,
-                                mArrayList.get(num).getMember_name(),
-                                mArrayList.get(num).getMember_info(),
-                                mArrayList.get(num).getMember_caution(),
-                                mArrayList.get(num).getMember_donot(),
-                                Integer.parseInt(all.getText().toString()),
-                                Integer.parseInt(one.getText().toString())
-                                );
-                                task.execute("http://" + IP_ADDRESS + "/reset1.php");
+//                                mediDataControler.createMediData(realm,buttonNum,
+//                                mArrayList.get(num).getMember_name(),
+//                                mArrayList.get(num).getMember_info(),
+//                                mArrayList.get(num).getMember_caution(),
+//                                mArrayList.get(num).getMember_donot(),
+//                                Integer.parseInt(all.getText().toString()),
+//                                Integer.parseInt(one.getText().toString())
+//                                );
+//                                task.execute("http://" + IP_ADDRESS + "/reset1.php");
                                 break;
                             case 2:
-                                mediDataControler.createMediData(realm,buttonNum,
+                                mediDataControler.createMediData(buttonNum,
                                         mArrayList.get(num).getMember_name(),
                                         mArrayList.get(num).getMember_info(),
                                         mArrayList.get(num).getMember_caution(),
@@ -226,6 +226,7 @@ public class Medi_setting extends AppCompatActivity {
 
 
                         Toast.makeText(getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }
             }
