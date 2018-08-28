@@ -113,7 +113,8 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:RESET
-                dbHelper.delete(buttonNum);
+                dbHelper.delete(1);
+                finish();
             }
         });
 
