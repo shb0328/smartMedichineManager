@@ -45,7 +45,7 @@ public class Medi_setting extends AppCompatActivity {
     //local DB
     private Realm realm;
     private Intent intent;
-    private MediDataControler mediDataControler = new MediDataControler();
+//    private MediDataControler mediDataControler = new MediDataControler();
     private int buttonNum=0;
 
 
@@ -181,18 +181,10 @@ public class Medi_setting extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"intent 전달 에러",Toast.LENGTH_LONG);
                                 break;
                             case 1:
-                                mediDataControler.createMediData(realm,buttonNum,
-                                mArrayList.get(num).getMember_name(),
-                                mArrayList.get(num).getMember_info(),
-                                mArrayList.get(num).getMember_caution(),
-                                mArrayList.get(num).getMember_donot(),
-                                Integer.parseInt(all.getText().toString()),
-                                Integer.parseInt(one.getText().toString())
-                                );
-                                task.execute("http://" + IP_ADDRESS + "/reset1.php");
+
                                 break;
                             case 2:
-                                mediDataControler.createMediData(realm,buttonNum,
+                               createMediData(realm,buttonNum,
                                         mArrayList.get(num).getMember_name(),
                                         mArrayList.get(num).getMember_info(),
                                         mArrayList.get(num).getMember_caution(),
@@ -422,5 +414,26 @@ public class Medi_setting extends AppCompatActivity {
     }
 
 
+
+    //DB생성!
+    public void createMediData(Realm realm,final int num, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+        Log.d("테스트","DB생성");
+
+        realm.executeTransaction(new Realm.Transaction() {
+
+            @Override
+            public void execute(Realm realm) {
+                MediData mediData = realm.createObject(MediData.class);
+                mediData.setNum(num);
+                mediData.setMember_name(name);
+                mediData.setMember_info(info);
+                mediData.setMember_caution(caution);
+                mediData.setMember_donot(donot);
+                mediData.setMember_all(all);
+                mediData.setMember_one(one);
+                mediData.setCnt(all/one);
+            }
+        });
+    }
 }
 

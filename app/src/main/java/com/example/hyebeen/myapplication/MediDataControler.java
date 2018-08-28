@@ -183,16 +183,16 @@ public class MediDataControler implements Serializable{
     }
 
 
-
-    //DB삭제
-    public void clear(Realm realm) {
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                realm.delete(MediData.class);
-            }
-        });
-    }
+//
+//    //DB삭제
+//    public void clear(Realm realm) {
+//        realm.executeTransaction(new Realm.Transaction() {
+//            @Override
+//            public void execute(Realm realm) {
+//                realm.delete(MediData.class);
+//            }
+//        });
+//    }
 
 
 

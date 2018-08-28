@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MediInfo2 extends AppCompatActivity {
 
@@ -35,7 +36,7 @@ public class MediInfo2 extends AppCompatActivity {
         realm.beginTransaction();
         realm.commitTransaction();
 
-        mediDataControler = (MediDataControler)bundle.getSerializable("MediDataControler");
+//        mediDataControler = (MediDataControler)bundle.getSerializable("MediDataControler");
 //        mediData = (MediData) intent.getParcelableExtra("MediData");
 
         mediName = (TextView) findViewById(R.id.medi2_name);
@@ -46,16 +47,28 @@ public class MediInfo2 extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediDataControler.clear(realm);
+                clear(realm);
             }
         });
-
-//        RealmResults<MediData> mediData = realm.where(MediData.class)
-//                .equalTo("num", 2)
-//                .findAll();
 //        MediData mediData = mediDataControler.;
 
-        mediName.setText("error");
 
+        RealmResults<MediData> mediDatas = realm.where(MediData.class)
+                .equalTo("num", 2)
+                .findAll();
+        MediData mediData = mediDatas.where().equalTo("num", 2).findFirst();
+
+        mediName.setText(mediData.getMember_name());
+
+    }
+
+    //DB삭제
+    public void clear(Realm realm) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(MediData.class);
+            }
+        });
     }
 }

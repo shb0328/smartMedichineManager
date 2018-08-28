@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     //localDB
     private Realm realm;
-    private MediDataControler mediDataControler;
+//    private MediDataControler mediDataControler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         realm = Realm.getDefaultInstance(); //사용준비
-        mediDataControler = new MediDataControler();
+//        mediDataControler = new MediDataControler();
 
 
         //button
@@ -36,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(mediDataControler.isCheckClassFile(realm)){
+                if(isCheckClassFile(realm)){
                     //TODO:등록된 정보가 있다면,
-                    Intent intent_o = new Intent(getApplicationContext(), MediInfo1.class);
-                    intent_o.putExtra("MediDataControler", mediDataControler); //db존재
+                    Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
+//                    intent_o.putExtra("MediDataControler", mediDataControler); //db존재
                     startActivity(intent_o);
                 }
                 else {
@@ -81,4 +81,26 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         realm.close();
     }
+
+    //DB 에 내용이 있는지 체크 (파일이 존재하는지 확인)
+    public boolean isCheckClassFile(Realm realm) {
+        final Boolean[] result = {false};
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                //db의 첫번째 값을 가져와라
+                MediData currentMediData = realm.where(MediData.class).findFirst();
+
+                if(currentMediData == null) { //값이 없으면
+                    result[0] = false;
+                }
+                else { //값이 있으면
+                    result[0] = true;
+                }
+            }
+        });
+
+        return  result[0];
+    }
+
 }
