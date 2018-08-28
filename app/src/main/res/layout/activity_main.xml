@@ -7,7 +7,7 @@
     tools:context="com.example.hyebeen.myapplication.MainActivity">
 
     <LinearLayout
-        android:layout_width="255dp"
+        android:layout_width="315dp"
         android:layout_height="314dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
@@ -62,7 +62,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <LinearLayout
-                android:layout_width="130dp"
+                android:layout_width="158dp"
                 android:layout_height="169dp"
                 android:orientation="vertical">
 
