@@ -79,22 +79,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return result;
     }
-    public String[] isExist1() {
+    public boolean isExist(int buttonNum) {
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
 
-        String[] str = {"",""};
 
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==1){
-
-                str[0]="true";
-                str[1]=cursor.getString(1);
-                return str;
+            if(cursor.getInt(1)==buttonNum){
+                return true;
             }
         }
-        str[0]="false";
-        return str;
+        return false;
     }
 }

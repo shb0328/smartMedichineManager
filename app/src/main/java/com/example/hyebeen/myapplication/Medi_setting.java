@@ -47,7 +47,7 @@ public class Medi_setting extends AppCompatActivity {
             ,"","","","","","","","","","","","","","","","","","","","","","","",""};
 
     //local DB
-    private int test;
+
 
 
 
@@ -57,7 +57,7 @@ public class Medi_setting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.medi_set);
 
-
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
 
 
 
@@ -166,7 +166,18 @@ public class Medi_setting extends AppCompatActivity {
                                 task.execute("http://" + IP_ADDRESS + "/reset1.php");
                                 break;
                             case 2:
+                                String info="";
+                                String caution="";
+                                String donot="";
 
+                                for(int i=0;i<mArrayList.size();i++) {
+                                    if (edit.getText().toString().equals(mArrayList.get(i).getMember_name().toString())) {
+                                        info=mArrayList.get(i).getMember_info().toString();
+                                        caution=mArrayList.get(i).getMember_caution().toString();
+                                        donot=mArrayList.get(i).getMember_donot().toString();
+                                    }
+                                }
+                                dbHelper.insert(buttonNum,edit.getText().toString(),info,caution,donot,Integer.parseInt(all.getText().toString()),Integer.parseInt(one.getText().toString()),0);
                                 task.execute("http://" + IP_ADDRESS + "/reset2.php");
                                 break;
                             case 3:
