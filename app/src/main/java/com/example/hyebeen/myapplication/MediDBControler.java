@@ -116,6 +116,101 @@ public class MediDBControler implements Serializable{
         return returnNum4;
     }
 
+    //DB에 정보 셋팅
+    public void setMediData_num1(Realm realm, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                MediDB mediDB = realm.where(MediDB.class).findFirst();
+
+                returnNum1 = mediDB.getNum1();
+                returnNum1.setMember_name(name);
+                returnNum1.setMember_info(info);
+                returnNum1.setMember_caution(caution);
+                returnNum1.setMember_donot(donot);
+                returnNum1.setMember_all(all);
+                returnNum1.setMember_one(one);
+                returnNum1.setCnt(all/one);
+
+                mediDB.setNum1(returnNum1);
+
+            }
+        });
+
+    }
+
+    public void setMediData_num2(Realm realm, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                MediDB mediDB = realm.where(MediDB.class).findFirst();
+
+                returnNum2 = mediDB.getNum2();
+                returnNum2.setMember_name(name);
+                returnNum2.setMember_info(info);
+                returnNum2.setMember_caution(caution);
+                returnNum2.setMember_donot(donot);
+                returnNum2.setMember_all(all);
+                returnNum2.setMember_one(one);
+                returnNum2.setCnt(all/one);
+
+                mediDB.setNum2(returnNum2);
+
+            }
+        });
+
+    }
+
+    public void setMediData_num3(Realm realm, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                MediDB mediDB = realm.where(MediDB.class).findFirst();
+
+                returnNum3 = mediDB.getNum3();
+                returnNum3.setMember_name(name);
+                returnNum3.setMember_info(info);
+                returnNum3.setMember_caution(caution);
+                returnNum3.setMember_donot(donot);
+                returnNum3.setMember_all(all);
+                returnNum3.setMember_one(one);
+                returnNum3.setCnt(all/one);
+
+                mediDB.setNum3(returnNum3);
+
+            }
+        });
+
+    }
+
+    public void setMediData_num4(Realm realm, final String name, final String info, final String caution, final String donot, final int all, final int one) {
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                MediDB mediDB = realm.where(MediDB.class).findFirst();
+
+                returnNum4 = mediDB.getNum4();
+                returnNum4.setMember_name(name);
+                returnNum4.setMember_info(info);
+                returnNum4.setMember_caution(caution);
+                returnNum4.setMember_donot(donot);
+                returnNum4.setMember_all(all);
+                returnNum4.setMember_one(one);
+                returnNum4.setCnt(all/one);
+
+                mediDB.setNum4(returnNum4);
+
+            }
+        });
+
+    }
+
+
+
     //DB삭제
     public void clear(Realm realm) {
         realm.executeTransaction(new Realm.Transaction() {

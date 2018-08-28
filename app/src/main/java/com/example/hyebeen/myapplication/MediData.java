@@ -1,7 +1,7 @@
 package com.example.hyebeen.myapplication;
 
 public class MediData{
-
+    
     private String name;
     private String info;
     private String caution;

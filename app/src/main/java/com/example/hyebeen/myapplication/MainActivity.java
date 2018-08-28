@@ -45,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler.getMediData_num1(realm)); //null
+                    intent_x.putExtra("MediData",mediDBControler); //null
                     startActivity(intent_x);
                 }
                 else {
                     //TODO:등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo1.class);
-                    intent_o.putExtra("MediData",mediDBControler.getMediData_num1(realm)); //db존재
+                    intent_o.putExtra("MediData",mediDBControler); //db존재
                     startActivity(intent_o);
                 }
 
@@ -70,13 +70,18 @@ public class MainActivity extends AppCompatActivity {
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler.getMediData_num2(realm)); //null
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("buttonNum",b2.getText().toString());
+                    bundle.putSerializable("mediDBControler",mediDBControler);
+                    intent_x.putExtras(bundle);
+
                     startActivity(intent_x);
                 }
                 else {
                     //TODO:등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
-                    intent_o.putExtra("MediData",mediDBControler.getMediData_num2(realm)); //db존재
+                    intent_o.putExtra("mediDBControler",mediDBControler);
                     startActivity(intent_o);
                 }
 
@@ -95,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler.getMediData_num3(realm)); //null
+                    intent_x.putExtra("MediData",mediDBControler); //null
                     startActivity(intent_x);
                 }
                 else {
                     //TODO:등록된 정보가 있다면,
 //                    Intent intent_o = new Intent(getApplicationContext(), MediInfo3.class);
-//                    intent_o.putExtra("MediData",mediDBControler.getMediData_num3(realm)); //db존재
+//                    intent_o.putExtra("MediData",mediDBControler); //db존재
 //                    startActivity(intent_o);
                 }
 
@@ -120,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler.getMediData_num4(realm)); //null
+                    intent_x.putExtra("MediData",mediDBControler); //null
                     startActivity(intent_x);
                 }
                 else {
                     //TODO:등록된 정보가 있다면,
 //                    Intent intent_o = new Intent(getApplicationContext(), MediInfo4.class);
-//                    intent_o.putExtra("MediData",mediDBControler.getMediData_num4(realm)); //db존재
+//                    intent_o.putExtra("MediData",mediDBControler); //db존재
 //                    startActivity(intent_o);
                 }
 
