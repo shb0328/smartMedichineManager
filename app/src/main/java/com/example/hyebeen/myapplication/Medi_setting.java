@@ -47,7 +47,7 @@ public class Medi_setting extends AppCompatActivity {
             ,"","","","","","","","","","","","","","","","","","","","","","","",""};
 
     //local DB
-
+    private int test;
 
 
 
@@ -166,6 +166,7 @@ public class Medi_setting extends AppCompatActivity {
                                 task.execute("http://" + IP_ADDRESS + "/reset1.php");
                                 break;
                             case 2:
+
                                 task.execute("http://" + IP_ADDRESS + "/reset2.php");
                                 break;
                             case 3:
