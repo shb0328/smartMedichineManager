@@ -151,7 +151,7 @@
                     android:layout_height="57dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:text="(남은 양)"
+                    android:text="(전체 양)"
                     android:textAlignment="viewStart"
                     android:textColor="@android:color/black"
                     android:textSize="24sp"
