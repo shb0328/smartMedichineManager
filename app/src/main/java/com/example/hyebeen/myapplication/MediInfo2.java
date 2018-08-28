@@ -1,5 +1,6 @@
 package com.example.hyebeen.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,7 +25,6 @@ public class MediInfo2 extends AppCompatActivity {
     private Button resetButton;
     //----------------------------------------//
 
-
     /*********************Begin of OnCreate*************************/
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
@@ -42,13 +42,15 @@ public class MediInfo2 extends AppCompatActivity {
         resetButton = (Button) findViewById(R.id.resetButton);
 
 
-
         //--------------------Listener--------------------//
 
         cautionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO:SHOW CAUTION
+                Intent intent = new Intent(getApplicationContext(),PopUp_info.class);
+                intent.putExtra("data","(약 상세정보)");
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -56,6 +58,9 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:SHOW DONOT
+                Intent intent = new Intent(getApplicationContext(),PopUp_info.class);
+                intent.putExtra("data","(약 상세정보)");
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -66,7 +71,8 @@ public class MediInfo2 extends AppCompatActivity {
             }
         });
 
-    }
-    /**********************END of OnCreate*************************/
+
+
+    }/**********************END of OnCreate*************************/
 
 }
