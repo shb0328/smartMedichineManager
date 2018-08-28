@@ -8,7 +8,8 @@ public class MediData{
     private String name;
     private String info;
     private String caution;
-    private  String donot;
+    private String donot;
+    private String img;
 
     private int all;
     private int one;
@@ -63,6 +64,13 @@ public class MediData{
     }
     public void setMember_donot(String donot) {
         this.donot = donot;
+    }
+
+    public String getMember_img() {
+        return img;
+    }
+    public void setMember_img(String img) {
+        this.img = img;
     }
 
 }
