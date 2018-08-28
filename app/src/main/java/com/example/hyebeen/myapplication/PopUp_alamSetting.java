@@ -63,6 +63,7 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
             public void onClick (View v) {
                 setAlarm();
                 Toast.makeText(getApplicationContext(), "설정완료", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
@@ -71,6 +72,7 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
 
             public void onClick(View v) {
                 resetAlarm();
+                finish();
             }
         });
 
@@ -126,7 +128,6 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
     /**
      *
      */
-
 
 
     @Override
