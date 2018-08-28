@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //DBHelper생성
-
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
 
         //button1
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
                 if(dbHelper.isExist(buttonNum)){
                     //T등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
+                    intent_o.putExtra("ButtonNum",buttonNum);
                     startActivity(intent_o);
                 }
                 else {
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 if(dbHelper.isExist(buttonNum)){
                     //T등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
+                    intent_o.putExtra("ButtonNum",buttonNum);
                     startActivity(intent_o);
                 }
                 else {
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if(dbHelper.isExist(buttonNum)){
                     //T등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
+                    intent_o.putExtra("ButtonNum",buttonNum);
                     startActivity(intent_o);
                 }
                 else {
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 if(dbHelper.isExist(buttonNum)){
                     //T등록된 정보가 있다면,
                     Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
+                    intent_o.putExtra("ButtonNum",buttonNum);
                     startActivity(intent_o);
                 }
                 else {
