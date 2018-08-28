@@ -86,28 +86,34 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cautionButton"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Caution" />
 
             <Button
                 android:id="@+id/donotButton"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Do Not" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/alamSetting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="다음에 약 먹을 시간은?" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="142dp"
+            android:layout_height="55dp"
             android:baselineAligned="false"
             android:orientation="horizontal">
 
@@ -120,7 +126,9 @@
                     android:id="@+id/eat_num2"
                     android:layout_width="172dp"
                     android:layout_height="57dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="1"
                     android:text="(먹은 양)"
                     android:textAlignment="viewEnd"
@@ -128,13 +136,13 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textView7"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.505" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_weight="1"
                     android:text="@string/slash"
                     android:textColor="@android:color/black"
@@ -149,6 +157,7 @@
                     android:id="@+id/total_num2"
                     android:layout_width="164dp"
                     android:layout_height="57dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:text="(전체 양)"
@@ -157,8 +166,7 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.505" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
         </LinearLayout>
