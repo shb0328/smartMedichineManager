@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -19,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
         /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
         item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
         //db.execSQL("drop table MONEYBOOKS;");
-        db.execSQL("CREATE TABLE MONEYBOOKS (num INTEGER, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER, img TEXT);");
+        db.execSQL("CREATE TABLE MONEYBOOKS (num INTEGER primary key, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER, img TEXT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
@@ -47,7 +48,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public void delete(int num) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM MONEYBOOKS WHERE num = num;");
+        Log.d("qwe",""+num);
+        db.execSQL("DELETE FROM MONEYBOOKS WHERE num = "+num+";");
         db.close();
     }
 

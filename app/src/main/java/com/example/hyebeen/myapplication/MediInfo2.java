@@ -1,5 +1,6 @@
 package com.example.hyebeen.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,16 +14,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MediInfo2 extends AppCompatActivity {
 
     private static String IP_ADDRESS = "192.168.43.46";
+    private static String TAG = "phptest";
+
+
 
     //---------------View------------------//
     private TextView num;
@@ -62,6 +73,9 @@ public class MediInfo2 extends AppCompatActivity {
         imgUrl  = "http://"+IP_ADDRESS+"/img/"+imgName;
         task = new ShowImage();
         task.execute(imgUrl);
+
+
+
 
         //-----------------findViewByld-------------------//
 
@@ -115,7 +129,7 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:RESET
-                dbHelper.delete(1);
+                dbHelper.delete(buttonNum);
                 finish();
             }
         });
@@ -168,5 +182,4 @@ public class MediInfo2 extends AppCompatActivity {
             }
         }
     }
-
 }
