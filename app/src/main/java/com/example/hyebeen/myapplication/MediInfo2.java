@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,15 +52,16 @@ public class MediInfo2 extends AppCompatActivity {
         //DBHelper생성
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
 
+
+        //-----------------ButtonNum 받아오기---------------//
+        intent = getIntent();
+        buttonNum = intent.getIntExtra("ButtonNum",0);
+
         //----------------image 띄우기----------------------//
         imgName = dbHelper.findimg(buttonNum);
         imgUrl  = "http://"+IP_ADDRESS+"/img/"+imgName;
         task = new ShowImage();
         task.execute(imgUrl);
-
-        //-----------------ButtonNum 받아오기---------------//
-        intent = getIntent();
-        buttonNum = intent.getIntExtra("ButtonNum",0);
 
         //-----------------findViewByld-------------------//
 
@@ -113,7 +115,8 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:RESET
-                dbHelper.delete(buttonNum);
+                dbHelper.delete(1);
+                finish();
             }
         });
 

@@ -18,8 +18,8 @@ public class DBHelper extends SQLiteOpenHelper {
         // 새로운 테이블 생성
         /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
         item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
-        //db.execSQL("drop table MONEYBOOK;");
-        db.execSQL("CREATE TABLE MONEYBOOKS (_id INTEGER PRIMARY KEY AUTOINCREMENT, num INTEGER, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER);");
+        //db.execSQL("drop table MONEYBOOKS;");
+        db.execSQL("CREATE TABLE MONEYBOOKS (num INTEGER, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER, img TEXT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
@@ -28,12 +28,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insert(int num, String name, String info, String caution, String donot, int allnum, int one, int cnt) {
+    public void insert(int num, String name, String info, String caution, String donot, int allnum, int one, int cnt,String img) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         cnt=allnum/one;
-        db.execSQL("INSERT INTO MONEYBOOKS VALUES(null," + num + ", '" + name + "', '" + info + "', '" + caution + "', '" + donot + "', " + allnum + ", " + one + ", " + cnt + ");");
+        db.execSQL("INSERT INTO MONEYBOOKS VALUES(" + num + ", '" + name + "', '" + info + "', '" + caution + "', '" + donot + "', " + allnum + ", " + one + ", " + cnt + ", '" + img + "');");
         db.close();
     }
 
@@ -47,7 +47,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void delete(int num) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
-        db.execSQL("DELETE FROM MONEYBOOKS WHERE num=" + num + ";");
+        db.execSQL("DELETE FROM MONEYBOOKS WHERE num = num;");
         db.close();
     }
 
@@ -59,7 +59,9 @@ public class DBHelper extends SQLiteOpenHelper {
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()) {
-            result += cursor.getInt(1)
+            result += cursor.getInt(0)
+                    + " : "
+                    + cursor.getString(1)
                     + " : "
                     + cursor.getString(2)
                     + " : "
@@ -67,13 +69,13 @@ public class DBHelper extends SQLiteOpenHelper {
                     + " : "
                     + cursor.getString(4)
                     + " : "
-                    + cursor.getString(5)
+                    + cursor.getInt(5)
                     + " : "
                     + cursor.getInt(6)
                     + " : "
                     + cursor.getInt(7)
                     + " : "
-                    + cursor.getInt(8)+"\n";
+                    + cursor.getString(8) +"\n";
 
         }
 
@@ -86,7 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==buttonNum){
+            if(cursor.getInt(0)==buttonNum){
                 return true;
             }
         }
@@ -99,8 +101,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==num)
-                return cursor.getString(3);
+            if(cursor.getInt(0)==num)
+                return cursor.getString(2);
         }
         return "찾을 수 없습니다.";
     }
@@ -111,8 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==num)
-                return cursor.getString(4);
+            if(cursor.getInt(0)==num)
+                return cursor.getString(3);
         }
         return "찾을 수 없습니다.";
     }
@@ -123,8 +125,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==num)
-                return cursor.getString(5);
+            if(cursor.getInt(0)==num)
+                return cursor.getString(4);
         }
         return "찾을 수 없습니다.";
     }
@@ -135,8 +137,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==num)
-                return cursor.getString(2);
+            if(cursor.getInt(0)==num)
+                return cursor.getString(1);
         }
         return "찾을 수 없습니다.";
     }
@@ -147,9 +149,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
         while (cursor.moveToNext()){
-            if(cursor.getInt(1)==num)
-                return cursor.getInt(6);
+            if(cursor.getInt(0)==num)
+                return cursor.getInt(5);
         }
         return 0000;
+    }
+
+    public String findimg(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(0)==num)
+                return cursor.getString(8);
+        }
+        return "찾을 수 없습니다.";
     }
 }
