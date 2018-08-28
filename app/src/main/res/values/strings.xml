@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">스마트 알약 보관함</string>
+    <string name="register">등록</string>
+    <string name="slash">/</string>
+    <string name="search">search</string>
+    <string name="name2">2번 알약</string>
+    <string name="name1">1번 알약</string>
 </resources>
