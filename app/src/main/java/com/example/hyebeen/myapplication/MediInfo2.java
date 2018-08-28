@@ -1,63 +1,72 @@
 package com.example.hyebeen.myapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class MediInfo2 extends AppCompatActivity {
 
+
+    //---------------View------------------//
     private TextView mediName;
     private TextView mediInfo;
+    private ImageView imageView;
+
     private TextView one;
     private TextView all;
 
-    ImageButton resetButton;
+    private Button cautionButton;
+    private Button donotButton;
 
-    //localDB
-    private Realm realm;
-    private Intent intent = getIntent();
-    private MediDataControler mediDataControler;
-//    private MediData mediData;
+    private Button resetButton;
+    //----------------------------------------//
 
+
+    /*********************Begin of OnCreate*************************/
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.medi2_info);
 
-        Bundle bundle = intent.getExtras();
-
-        realm = Realm.getDefaultInstance(); //사용준비
-        realm.beginTransaction();
-        realm.commitTransaction();
-
-        mediDataControler = (MediDataControler)bundle.getSerializable("MediDataControler");
-//        mediData = (MediData) intent.getParcelableExtra("MediData");
+        //-----------------findViewByld-------------------//
 
         mediName = (TextView) findViewById(R.id.medi2_name);
         mediInfo = (TextView) findViewById(R.id.medi2_info2);
+        imageView = (ImageView) findViewById(R.id.imageView);
         one = (TextView) findViewById(R.id.one);
         all = (TextView) findViewById(R.id.all);
-        resetButton = (ImageButton) findViewById(R.id.resetButton);
-        resetButton.setOnClickListener(new View.OnClickListener() {
+        cautionButton = (Button) findViewById(R.id.cautionButton);
+        donotButton = (Button) findViewById(R.id.donotButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
+
+
+
+        //--------------------Listener--------------------//
+
+        cautionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediDataControler.clear(realm);
+                //TODO:SHOW CAUTION
             }
         });
 
-        RealmResults<MediData> mediDatas = realm.where(MediData.class)
-                .equalTo("num", 2)
-                .findAll();
-//        MediData mediData = mediDataControler.;
+        donotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO:SHOW DONOT
+            }
+        });
 
-        MediData mediData = mediDatas.where().equalTo("num",2).findAll();
-        mediName.setText(mediData.getMember_name());
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO:RESET
+            }
+        });
 
     }
+    /**********************END of OnCreate*************************/
+
 }

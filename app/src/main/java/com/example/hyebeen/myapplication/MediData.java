@@ -1,55 +1,59 @@
 package com.example.hyebeen.myapplication;
 
-import java.io.Serializable;
+public class MediData{
 
-import io.realm.RealmObject;
-
-public class MediData extends RealmObject{
-
-
+    //------------Field--------------//
     private int num;
 
     private String name;
     private String info;
     private String caution;
     private  String donot;
+
     private int all;
     private int one;
+
     private int cnt;
 
+    //---------Getter & Setter------------//
 
     public int getNum() {
         return num;
     }
-
     public void setNum(int num) {
         this.num = num;
+    }
+
+    public int getMember_one(){return one;}
+    public void setMember_one(int member_one){this.one =  member_one;}
+
+    public int getMember_all(){return all;}
+    public void setMember_all(int member_all){this.all=  member_all;}
+
+    public int getCnt() {
+        return cnt;
+    }
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
     }
 
     public String getMember_info() {
         return info;
     }
+    public void setMember_info(String member_info) {
+        this.info = member_info;
+    }
 
     public String getMember_name() {
         return name;
+    }
+    public void setMember_name(String member_name) {
+        this.name = member_name;
     }
 
     public String getMember_caution() {
         return caution;
     }
-
-    public int getMember_one(){return one;}
-
-    public int getMember_all(){return all;}
-
-    public void setMember_info(String member_info) {
-        this.info = member_info;
-    }
-
-    public void setMember_name(String member_name) {
-        this.name = member_name;
-    }
-
     public void setMember_caution(String member_take) {
         this.caution = member_take;
     }
@@ -57,22 +61,8 @@ public class MediData extends RealmObject{
     public String getMember_donot() {
         return donot;
     }
-
     public void setMember_donot(String donot) {
         this.donot = donot;
-    }
-
-
-    public void setMember_one(int member_one){this.one =  member_one;}
-
-    public void setMember_all(int member_all){this.all=  member_all;}
-
-    public int getCnt() {
-        return cnt;
-    }
-
-    public void setCnt(int cnt) {
-        this.cnt = cnt;
     }
 
 }

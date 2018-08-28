@@ -27,13 +27,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import io.realm.Realm;
+
+/****
+Setting
+ ****/
 
 public class Medi_setting extends AppCompatActivity {
-
-    String[] items={"","","","","","","","","","","","","","","","","","","","","","","","",""
-            ,"","","","","","","","","","","","","","","","","","","","","","","",""};
-
 
     private static String IP_ADDRESS = "192.168.43.46";
     private static String TAG = "phptest";
@@ -41,31 +40,55 @@ public class Medi_setting extends AppCompatActivity {
     private ArrayList<MediData> mArrayList;
     private String mJsonString;
 
-
-    //local DB
-    private Realm realm;
     private Intent intent;
-    private MediDataControler mediDataControler = new MediDataControler(realm);
     private int buttonNum=0;
 
+    String[] items={"","","","","","","","","","","","","","","","","","","","","","","","",""
+            ,"","","","","","","","","","","","","","","","","","","","","","","",""};
 
+    //local DB
+
+
+
+
+    /*********************Begin of OnCreate*************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.medi2_set);
+        setContentView(R.layout.medi_set);
 
-        realm = Realm.getDefaultInstance(); //사용준비
-//        mediDataControler = (MediDataControler) intent.getSerializableExtra("MediDataControler");
 
-//        Bundle bundle = intent.getExtras();
-//        mediDataControler = (MediDataControler) bundle.get("MediDataControler");
-//        buttonNum = Integer.parseInt(bundle.getString("buttonNum"));
 
+
+
+
+
+        //-----------------findViewByld-------------------//
+        final AutoCompleteTextView edit = (AutoCompleteTextView) findViewById(R.id.edit);
+        Button check=(Button)findViewById(R.id.check);
+        final TextView all=(TextView)findViewById(R.id.all);
+        final TextView one=(TextView)findViewById(R.id.one);
+        Button regis=(Button)findViewById(R.id.regis) ;
+
+        //-----------------ButtonNum 받아오기---------------//
         intent = getIntent();
         buttonNum = intent.getIntExtra("ButtonNum",0);
 
+
+        //---------------------JSON Parsing---------------------//
+        mArrayList = new ArrayList<>();
+
+        GetData task = new GetData();
+        task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
+
+        edit.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, items));
+
+
+        //약 이름 예외처리 용 변수
         final boolean[] nameCheck = {false};
-        final AutoCompleteTextView edit = (AutoCompleteTextView) findViewById(R.id.edit);
+
+        //검색 창에 약 이름 수정되면 nameCheck = flase
         edit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,26 +106,7 @@ public class Medi_setting extends AppCompatActivity {
             }
         });
 
-        mArrayList = new ArrayList<>();
-
-        final TextView all=(TextView)findViewById(R.id.all);
-        final TextView one=(TextView)findViewById(R.id.one);
-
-
-
-        GetData task = new GetData();
-        task.execute( "http://" + IP_ADDRESS + "/getjson.php", "");
-
-        edit.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, items));
-
-
-
-        Button regis=(Button)findViewById(R.id.regis) ;
-        Button check=(Button)findViewById(R.id.check);
-
-
-        //약 존재 확인 버튼
+       //약 이름 확인
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,9 +126,7 @@ public class Medi_setting extends AppCompatActivity {
             }
         });
 
-
-
-        //DB에 약 등록 버튼
+        //약 등록
         regis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,8 +136,6 @@ public class Medi_setting extends AppCompatActivity {
                 final int allsize =all.getText().toString().length();
                 final int onesize =one.getText().toString().length();
                 final int namesize = edit.getText().toString().length();
-
-//                MediData dataNum=new MediData();
 
                 if(allsize == 0||onesize==0||namesize==0){
                     Toast.makeText(getApplicationContext(),"값을 입력해 주세요.",Toast.LENGTH_LONG).show();
@@ -151,79 +151,30 @@ public class Medi_setting extends AppCompatActivity {
                             }
                         }
 
-
-
-                        //realm
-//                        realm = Realm.getDefaultInstance(); //사용준비
-//                        mediDataControler = new MediDBControler();
-//
-//                        //만약 파일이 존재한다면 전체 삭제
-//                        if (mediDataControler.isCheckClassFile(realm)){
-//                            mediDataControler.clear(realm);
-//                        }
-//
-//                        //DB에 약정보 추가
-//                        mediDataControler.createMediDB(realm,
-//                                mArrayList.get(num).getMember_name(),
-//                                mArrayList.get(num).getMember_info(),
-//                                mArrayList.get(num).getMember_caution(),
-//                                mArrayList.get(num).getMember_donot(),
-//                                Integer.parseInt(all.getText().toString()),
-//                                Integer.parseInt(one.getText().toString())
-//                                );
-
-
                         phpDown task = new phpDown();
 
+                        /**
+                         * 약통 별로 DB에 등록하고 reset.php실행
+                         **/
 
+                        //TODO:버튼 번호 별로 DB에 등록 ㄱ
                         switch (buttonNum) {
                             case 0 :
                                 Toast.makeText(getApplicationContext(),"intent 전달 에러",Toast.LENGTH_LONG);
                                 break;
                             case 1:
-//                                mediDataControler.createMediData(realm,buttonNum,
-//                                mArrayList.get(num).getMember_name(),
-//                                mArrayList.get(num).getMember_info(),
-//                                mArrayList.get(num).getMember_caution(),
-//                                mArrayList.get(num).getMember_donot(),
-//                                Integer.parseInt(all.getText().toString()),
-//                                Integer.parseInt(one.getText().toString())
-//                                );
-//                                task.execute("http://" + IP_ADDRESS + "/reset1.php");
+                                task.execute("http://" + IP_ADDRESS + "/reset1.php");
                                 break;
                             case 2:
-                                mediDataControler.createMediData(buttonNum,
-                                        mArrayList.get(num).getMember_name(),
-                                        mArrayList.get(num).getMember_info(),
-                                        mArrayList.get(num).getMember_caution(),
-                                        mArrayList.get(num).getMember_donot(),
-                                        Integer.parseInt(all.getText().toString()),
-                                        Integer.parseInt(one.getText().toString())
-                                );
                                 task.execute("http://" + IP_ADDRESS + "/reset2.php");
                                 break;
                             case 3:
-
+                                task.execute("http://" + IP_ADDRESS + "/reset3.php");
                                 break;
                             case 4:
-
+                                task.execute("http://" + IP_ADDRESS + "/reset4.php");
                                 break;
                         }
-//                        mediData.setMember_name( mArrayList.get(num).getMember_name());
-//                        mediData.setMember_info(mArrayList.get(num).getMember_info());
-//                        mediData.setMember_caution(mArrayList.get(num).getMember_caution());
-//                        mediData.setMember_donot(mArrayList.get(num).getMember_donot());
-//                        mediData.setMember_all(Integer.parseInt(all.getText().toString()));
-//                        mediData.setMember_one(Integer.parseInt(one.getText().toString()));
-//                        mediData.setCnt(Integer.parseInt(all.getText().toString())/Integer.parseInt(one.getText().toString()));
-                        //realm end
-
-//                        dataNum.setMember_info(mArrayList.get(num).getMember_info());
-//                        dataNum.setMember_all(Integer.parseInt(all.getText().toString()));
-//                        dataNum.setMember_one(Integer.parseInt(one.getText().toString()));
-//                        dataNum.setMember_name(edit.getText().toString());
-
-
 
                         Toast.makeText(getApplicationContext(),"등록되었습니다.",Toast.LENGTH_LONG).show();
                         finish();
@@ -234,10 +185,13 @@ public class Medi_setting extends AppCompatActivity {
 
 
     }
+    /**********************END of OnCreate*************************/
 
+
+    /**
+     * php
+     */
     private class phpDown extends AsyncTask<String, Integer,String> {
-
-
 
         @Override
         protected String doInBackground(String... urls) {
@@ -271,15 +225,15 @@ public class Medi_setting extends AppCompatActivity {
             return jsonHtml.toString();
 
         }
-
         protected void onPostExecute(String str){
 
         }
-
-
     }
 
 
+    /**
+     * JSON
+     */
 
     private class GetData extends AsyncTask<String, Void, String>{
 
@@ -293,7 +247,6 @@ public class Medi_setting extends AppCompatActivity {
             progressDialog = ProgressDialog.show(Medi_setting.this,
                     "Please Wait", null, true, true);
         }
-
 
         @Override
         protected void onPostExecute(String result) {
@@ -313,8 +266,6 @@ public class Medi_setting extends AppCompatActivity {
                 showResult();
             }
         }
-
-
         @Override
         protected String doInBackground(String... params) {
 
@@ -421,7 +372,5 @@ public class Medi_setting extends AppCompatActivity {
             Log.d(TAG, "showResult : ", e);
         }
     }
-
-
 }
 
