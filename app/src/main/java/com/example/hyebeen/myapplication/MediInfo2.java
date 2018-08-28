@@ -25,6 +25,8 @@ public class MediInfo2 extends AppCompatActivity {
     private Button cautionButton;
     private Button donotButton;
 
+    private Button alamSetButton;
+
     private Button resetButton;
 
     private Intent intent;
@@ -53,6 +55,7 @@ public class MediInfo2 extends AppCompatActivity {
         all = (TextView) findViewById(R.id.total_num2);
         cautionButton = (Button) findViewById(R.id.cautionButton);
         donotButton = (Button) findViewById(R.id.donotButton);
+        alamSetButton = (Button) findViewById(R.id.alamSetting);
         resetButton = (Button) findViewById(R.id.resetButton);
 
         //
@@ -87,6 +90,14 @@ public class MediInfo2 extends AppCompatActivity {
                 //TODO:SHOW DONOT
                 Intent intent = new Intent(getApplicationContext(),PopUp_info.class);
                 intent.putExtra("data",dbHelper.finddonot(buttonNum));
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        alamSetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),PopUp_alamSetting.class);
                 startActivityForResult(intent, 1);
             }
         });
