@@ -92,4 +92,40 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+
+    public String findinfo(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(1)==num)
+                return cursor.getString(3);
+        }
+        return "찾을 수 없습니다.";
+    }
+
+    public String findcaution(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(1)==num)
+                return cursor.getString(4);
+        }
+        return "찾을 수 없습니다.";
+    }
+
+    public String finddonot(int num){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+
+        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        while (cursor.moveToNext()){
+            if(cursor.getInt(1)==num)
+                return cursor.getString(5);
+        }
+        return "찾을 수 없습니다.";
+    }
 }

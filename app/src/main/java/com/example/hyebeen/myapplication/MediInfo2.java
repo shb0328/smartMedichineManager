@@ -23,12 +23,22 @@ public class MediInfo2 extends AppCompatActivity {
     private Button donotButton;
 
     private Button resetButton;
+
+    private Intent intent;
+    private int buttonNum=0;
     //----------------------------------------//
 
     /*********************Begin of OnCreate*************************/
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.medi2_info);
+
+        //DBHelper생성
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+
+        //-----------------ButtonNum 받아오기---------------//
+        intent = getIntent();
+        buttonNum = intent.getIntExtra("ButtonNum",0);
 
         //-----------------findViewByld-------------------//
 
@@ -49,7 +59,7 @@ public class MediInfo2 extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO:SHOW CAUTION
                 Intent intent = new Intent(getApplicationContext(),PopUp_info.class);
-                intent.putExtra("data","(약 상세정보)");
+                intent.putExtra("data",dbHelper.findcaution(buttonNum));
                 startActivityForResult(intent, 1);
             }
         });
@@ -59,7 +69,7 @@ public class MediInfo2 extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO:SHOW DONOT
                 Intent intent = new Intent(getApplicationContext(),PopUp_info.class);
-                intent.putExtra("data","(약 상세정보)");
+                intent.putExtra("data",dbHelper.finddonot(buttonNum));
                 startActivityForResult(intent, 1);
             }
         });
