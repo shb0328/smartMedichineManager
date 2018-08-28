@@ -35,7 +35,7 @@ public class Medi_setting extends AppCompatActivity {
             ,"","","","","","","","","","","","","","","","","","","","","","","",""};
 
 
-    private static String IP_ADDRESS = "192.168.0.225";
+    private static String IP_ADDRESS = "192.168.43.46";
     private static String TAG = "phptest";
 
     private ArrayList<MediData> mArrayList;
@@ -44,8 +44,8 @@ public class Medi_setting extends AppCompatActivity {
 
     //local DB
     private Realm realm;
-    private Intent intent = getIntent();
-    private MediDBControler mediDBControler;
+    private Intent intent;
+    private MediDataControler mediDataControler = new MediDataControler();
     private int buttonNum=0;
 
 
@@ -55,11 +55,14 @@ public class Medi_setting extends AppCompatActivity {
         setContentView(R.layout.medi2_set);
 
         realm = Realm.getDefaultInstance(); //사용준비
+//        mediDataControler = (MediDataControler) intent.getSerializableExtra("MediDataControler");
 
-        Bundle bundle = intent.getExtras();
-        mediDBControler = (MediDBControler) bundle.get("mediDBControler");
-        buttonNum = Integer.parseInt(bundle.getString("buttonNum"));
+//        Bundle bundle = intent.getExtras();
+//        mediDataControler = (MediDataControler) bundle.get("MediDataControler");
+//        buttonNum = Integer.parseInt(bundle.getString("buttonNum"));
 
+        intent = getIntent();
+        buttonNum = intent.getIntExtra("ButtonNum",0);
 
         final boolean[] nameCheck = {false};
         final AutoCompleteTextView edit = (AutoCompleteTextView) findViewById(R.id.edit);
@@ -174,18 +177,23 @@ public class Medi_setting extends AppCompatActivity {
 
 
                         switch (buttonNum) {
+                            case 0 :
+                                Toast.makeText(getApplicationContext(),"intent 전달 에러",Toast.LENGTH_LONG);
+                                break;
                             case 1:
-                                mediDBControler.setMediData_num1(realm,mArrayList.get(num).getMember_name(),
-                                        mArrayList.get(num).getMember_info(),
-                                        mArrayList.get(num).getMember_caution(),
-                                        mArrayList.get(num).getMember_donot(),
-                                        Integer.parseInt(all.getText().toString()),
-                                        Integer.parseInt(one.getText().toString())
+                                mediDataControler.createMediData(realm,buttonNum,
+                                mArrayList.get(num).getMember_name(),
+                                mArrayList.get(num).getMember_info(),
+                                mArrayList.get(num).getMember_caution(),
+                                mArrayList.get(num).getMember_donot(),
+                                Integer.parseInt(all.getText().toString()),
+                                Integer.parseInt(one.getText().toString())
                                 );
                                 task.execute("http://" + IP_ADDRESS + "/reset1.php");
                                 break;
                             case 2:
-                                mediDBControler.setMediData_num2(realm,mArrayList.get(num).getMember_name(),
+                                mediDataControler.createMediData(realm,buttonNum,
+                                        mArrayList.get(num).getMember_name(),
                                         mArrayList.get(num).getMember_info(),
                                         mArrayList.get(num).getMember_caution(),
                                         mArrayList.get(num).getMember_donot(),
@@ -195,24 +203,10 @@ public class Medi_setting extends AppCompatActivity {
                                 task.execute("http://" + IP_ADDRESS + "/reset2.php");
                                 break;
                             case 3:
-                                mediDBControler.setMediData_num3(realm,mArrayList.get(num).getMember_name(),
-                                        mArrayList.get(num).getMember_info(),
-                                        mArrayList.get(num).getMember_caution(),
-                                        mArrayList.get(num).getMember_donot(),
-                                        Integer.parseInt(all.getText().toString()),
-                                        Integer.parseInt(one.getText().toString())
-                                );
-                                task.execute("http://" + IP_ADDRESS + "/reset3.php");
+
                                 break;
                             case 4:
-                                mediDBControler.setMediData_num4(realm,mArrayList.get(num).getMember_name(),
-                                        mArrayList.get(num).getMember_info(),
-                                        mArrayList.get(num).getMember_caution(),
-                                        mArrayList.get(num).getMember_donot(),
-                                        Integer.parseInt(all.getText().toString()),
-                                        Integer.parseInt(one.getText().toString())
-                                );
-                                task.execute("http://" + IP_ADDRESS + "/reset4.php");
+
                                 break;
                         }
 //                        mediData.setMember_name( mArrayList.get(num).getMember_name());

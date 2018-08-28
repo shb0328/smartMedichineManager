@@ -1,7 +1,14 @@
 package com.example.hyebeen.myapplication;
 
-public class MediData{
-    
+import java.io.Serializable;
+
+import io.realm.RealmObject;
+
+public class MediData extends RealmObject{
+
+
+    private int num;
+
     private String name;
     private String info;
     private String caution;
@@ -10,6 +17,14 @@ public class MediData{
     private int one;
     private int cnt;
 
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public String getMember_info() {
         return info;

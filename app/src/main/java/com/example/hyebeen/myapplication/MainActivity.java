@@ -11,14 +11,14 @@ import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button b1;
+//    Button b1;
     Button b2;
-    Button b3;
-    Button b4;
+//    Button b3;
+//    Button b4;
 
     //localDB
     private Realm realm;
-    private MediDBControler mediDBControler;
+    private MediDataControler mediDataControler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,117 +26,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         realm = Realm.getDefaultInstance(); //사용준비
-        mediDBControler = new MediDBControler();
-
-        mediDBControler.createMediDB(realm);
-
+        mediDataControler = new MediDataControler();
 
 
         //button
-        b1 = (Button) findViewById(R.id.button1);
-        b1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if(mediDBControler.getMediData_num1(realm) == null){
-                    //TODO:등록된 정보가 없다면,
-                    Toast.makeText(getApplicationContext(),
-                            "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
-
-                    Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler); //null
-                    startActivity(intent_x);
-                }
-                else {
-                    //TODO:등록된 정보가 있다면,
-                    Intent intent_o = new Intent(getApplicationContext(), MediInfo1.class);
-                    intent_o.putExtra("MediData",mediDBControler); //db존재
-                    startActivity(intent_o);
-                }
-
-            }
-        });
-
         b2 = (Button) findViewById(R.id.button2);
         b2.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                if(mediDBControler.getMediData_num2(realm) == null){
-                    //TODO:등록된 정보가 없다면,
-                    Toast.makeText(getApplicationContext(),
-                            "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
-
-                    Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("buttonNum",b2.getText().toString());
-                    bundle.putSerializable("mediDBControler",mediDBControler);
-                    intent_x.putExtras(bundle);
-
-                    startActivity(intent_x);
-                }
-                else {
+                if(mediDataControler.isCheckClassFile(realm)){
                     //TODO:등록된 정보가 있다면,
-                    Intent intent_o = new Intent(getApplicationContext(), MediInfo2.class);
-                    intent_o.putExtra("mediDBControler",mediDBControler);
+                    Intent intent_o = new Intent(getApplicationContext(), MediInfo1.class);
+                    intent_o.putExtra("MediDataControler", mediDataControler); //db존재
                     startActivity(intent_o);
                 }
-
-            }
-        });
-
-        b3 = (Button) findViewById(R.id.button3);
-        b3.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if(mediDBControler.getMediData_num3(realm) == null){
+                else {
                     //TODO:등록된 정보가 없다면,
                     Toast.makeText(getApplicationContext(),
                             "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
                     Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler); //null
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("ButtonNum",b2.getText().toString());
+//                    bundle.putSerializable("MediDataControler", mediDataControler);
+//                    intent_x.putExtras(bundle);
+//                    intent_x.putExtra("MediDataControler", mediDataControler); //null
+                    intent_x.putExtra("ButtonNum",Integer.parseInt(b2.getText().toString()));
                     startActivity(intent_x);
-                }
-                else {
-                    //TODO:등록된 정보가 있다면,
-//                    Intent intent_o = new Intent(getApplicationContext(), MediInfo3.class);
-//                    intent_o.putExtra("MediData",mediDBControler); //db존재
-//                    startActivity(intent_o);
                 }
 
             }
         });
 
-        b4 = (Button) findViewById(R.id.button4);
-        b4.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
 
-                if(mediDBControler.getMediData_num4(realm) == null){
-                    //TODO:등록된 정보가 없다면,
-                    Toast.makeText(getApplicationContext(),
-                            "등록된 약 정보가 없습니다.\n새로운 약을 등록해주세요.", Toast.LENGTH_LONG).show();
 
-                    Intent intent_x = new Intent(getApplicationContext(), Medi_setting.class);
-                    intent_x.putExtra("MediData",mediDBControler); //null
-                    startActivity(intent_x);
-                }
-                else {
-                    //TODO:등록된 정보가 있다면,
-//                    Intent intent_o = new Intent(getApplicationContext(), MediInfo4.class);
-//                    intent_o.putExtra("MediData",mediDBControler); //db존재
-//                    startActivity(intent_o);
-                }
 
-            }
-        });
+
+
+
+
+
+
+
 
 
     }

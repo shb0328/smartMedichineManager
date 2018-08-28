@@ -2,7 +2,7 @@ package com.example.hyebeen.myapplication;
 
 import io.realm.RealmObject;
 
-public class MediDB extends RealmObject {
+public class MediDB {
     private MediData num1;
     private MediData num2;
     private MediData num3;
