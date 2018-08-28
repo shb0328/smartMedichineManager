@@ -3,6 +3,7 @@ package com.example.hyebeen.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               
+                String str;
+                str=dbHelper.getResult();
+                Log.d("확인",""+str);
                 int buttonNum = 2;
                 //TODO:  if(DB에 약정보 있는지 확인)
                 if(dbHelper.isExist(buttonNum)){
