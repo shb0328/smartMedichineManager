@@ -129,7 +129,9 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:RESET
-                dbHelper.delete(buttonNum);
+                Intent intent = new Intent(getApplicationContext(),PopUp_reset.class);
+                intent.putExtra("data",buttonNum);
+                startActivityForResult(intent, 1);
                 finish();
             }
         });
