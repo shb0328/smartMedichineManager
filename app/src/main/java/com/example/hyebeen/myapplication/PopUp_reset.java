@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class PopUp_reset extends Activity {
 
-    private Button yes;
     private int buttonNum;
 
     @Override
@@ -26,17 +25,6 @@ public class PopUp_reset extends Activity {
         Intent intent = getIntent();
         buttonNum = intent.getIntExtra("data",0);
 
-
-//        yes = (Button) findViewById(R.id.button) ;
-//        yes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
-
-
-
     }
 
     //No 버튼 클릭
@@ -48,6 +36,11 @@ public class PopUp_reset extends Activity {
         //DBHelper생성
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
         dbHelper.delete(buttonNum);
+
+        //데이터 전달하기
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+
         finish();
     }
 
