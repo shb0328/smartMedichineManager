@@ -17,7 +17,10 @@ public class PopUp_reset extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //타이틀바 없애기
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.pop_up_reset_check);
+
 
         //intent로 버튼 번호 받아오기
         Intent intent = getIntent();
@@ -32,9 +35,6 @@ public class PopUp_reset extends Activity {
 //            }
 //        });
 
-
-        //타이틀바 없애기
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
     }

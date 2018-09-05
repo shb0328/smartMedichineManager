@@ -132,7 +132,6 @@ public class MediInfo2 extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),PopUp_reset.class);
                 intent.putExtra("data",buttonNum);
                 startActivityForResult(intent, 1);
-                finish();
             }
         });
 
