@@ -60,6 +60,7 @@ public class MediInfo2 extends AppCompatActivity {
 
     private TextView one;
     private TextView all;
+    private TextView date;
 
     private Button cautionButton;
     private Button donotButton;
@@ -80,12 +81,13 @@ public class MediInfo2 extends AppCompatActivity {
         //DBHelper생성
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
-        mlistView = (ListView) findViewById(R.id.listView_main_list);
+//        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
+//        mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
 
         GetData task1 = new GetData();
         task1.execute("http://192.168.43.46/cntjson.php");
+
 
 
         //-----------------ButtonNum 받아오기---------------//
@@ -112,15 +114,17 @@ public class MediInfo2 extends AppCompatActivity {
         cautionButton = (Button) findViewById(R.id.cautionButton);
         donotButton = (Button) findViewById(R.id.donotButton);
         resetButton = (Button) findViewById(R.id.resetButton);
+        date=(TextView)findViewById(R.id.lastTime);
+
 
         //
         num.setText(Integer.toString(buttonNum));
         mediName.setText(dbHelper.findname(buttonNum));
         mediInfo.setText(dbHelper.findinfo(buttonNum));
         all.setText(Integer.toString(dbHelper.findall(buttonNum)));
-        String onee;
-        //onee=Integer.toString(getone(buttonNum)*dbHelper.findone(buttonNum));
-       // one.setText(onee);
+//        String onee;
+//        onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
+//        one.setText(onee);
 
 
 
@@ -128,6 +132,9 @@ public class MediInfo2 extends AppCompatActivity {
 
 
         //
+
+
+
 
 
         //--------------------Listener--------------------//
@@ -185,7 +192,7 @@ public class MediInfo2 extends AppCompatActivity {
             super.onPostExecute(result);
 
             progressDialog.dismiss();
-            mTextViewResult.setText(result);
+//            mTextViewResult.setText(result);
             Log.d(TAG1, "response  - " + result);
 
             if (result == null){
@@ -261,6 +268,7 @@ public class MediInfo2 extends AppCompatActivity {
 
     private void showResult(){
         try {
+            final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
@@ -287,25 +295,28 @@ public class MediInfo2 extends AppCompatActivity {
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
 
-            mlistView.setAdapter(adapter);
+//            mlistView.setAdapter(adapter);
+            String onee;
+            onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
+            one.setText(onee);
+            date.setText(mArrayList.get(buttonNum-1).get(TAG_ADDRESS));
 
         } catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);
         }
-        Log.d("확인",""+mArrayList.get(1).get(TAG_NAME));
 
     }
 
 
-//    public int getone(int num){
-//        for(int i =0;i<4;i++){
-//            if(Integer.parseInt(mArrayList.get(i).get(TAG_ID).toString())==buttonNum){
-//                return Integer.parseInt(mArrayList.get(i).get(TAG_NAME).toString());
-//            }
-//        }
-//        return 0;
-//    }
+    public int getcnt(int num){
+        for(int i =0;i<4;i++){
+            if(Integer.parseInt(mArrayList.get(i).get(TAG_ID).toString())==buttonNum){
+                return Integer.parseInt(mArrayList.get(i).get(TAG_NAME).toString());
+            }
+        }
+        return 0;
+    }
 
 
     /**
