@@ -18,11 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PopUp_info" android:theme="@android:style/Theme.Dialog"></activity>
-        <activity android:name=".PopUp_reset" android:theme="@android:style/Theme.Dialog"></activity>
-        <activity android:name=".MediInfo2"></activity>
-        <activity android:name=".Medi_setting"></activity>
+        <activity
+            android:name=".PopUp_info"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".PopUp_reset"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".MediInfo2" />
+        <activity android:name=".Medi_setting" />
+        <activity android:name=".pop_up_all_eaten" android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
