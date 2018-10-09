@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
+public class MyFireBaseInstanceIDService extends FirebaseInstanceIdService {
     private static final String TAG = "MyFirebaseIDService";
     private static final String myURL = "";
     @Override
