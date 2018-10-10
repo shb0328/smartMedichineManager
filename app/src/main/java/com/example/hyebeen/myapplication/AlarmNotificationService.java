@@ -38,17 +38,17 @@ public class AlarmNotificationService extends IntentService {
                 new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Create notification
-//        NotificationCompat.Builder alamNotificationBuilder = new NotificationCompat.Builder(
-//                this).setContentTitle("Alarm").setSmallIcon(R.mipmap.ic_launcher)
-//                .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
-//                .setContentText(msg).setAutoCancel(true);
-//        alamNotificationBuilder.setContentIntent(contentIntent);
+        NotificationCompat.Builder alamNotificationBuilder = new NotificationCompat.Builder(
+                this).setContentTitle("Alarm").setSmallIcon(R.mipmap.ic_launcher)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                .setContentText(msg).setAutoCancel(true);
+        alamNotificationBuilder.setContentIntent(contentIntent);
 
-        Notification.Builder builder = new Notification.Builder(this)
-                .setContentTitle("title")
-                .setContentText("body")
-                .setSmallIcon()
-                .setAutoCancel(true);
+//        Notification.Builder builder = new Notification.Builder(this)
+//                .setContentTitle("title")
+//                .setContentText("body")
+//                .setSmallIcon(getSmallIcon())
+//                .setAutoCancel(true);
 
         //notiy notification manager about new notification
         alarmNotificationManager.notify(NOTIFICATION_ID, alamNotificationBuilder.build());
