@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -29,4 +30,11 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+
+
 }
+apply plugin: 'com.google.gms.google-services'
