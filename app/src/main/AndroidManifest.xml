@@ -24,6 +24,15 @@
         <activity android:name=".PopUp_reset" android:theme="@android:style/Theme.Dialog"></activity>
         <activity android:name=".MediInfo2"></activity>
         <activity android:name=".Medi_setting"></activity>
+
+        <!--  Declare  Alarm Broadcast receiver here  -->
+        <receiver android:name=".AlarmReceiver" />
+
+        <!--  Declare  Alarm Notification Service here  -->
+        <service android:name=".AlarmNotificationService" />
+
+        <!--  Declare  Alarm Sound Service here  -->
+        <service android:name=".AlarmSoundService" />
     </application>
 
 </manifest>
