@@ -70,7 +70,7 @@ public class PharmacyLocation extends AppCompatActivity
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
     private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 1000; // 0.5초
 
     private AppCompatActivity mActivity;
     boolean askPermissionOnceAgain = false;
@@ -83,7 +83,7 @@ public class PharmacyLocation extends AppCompatActivity
 
     List<Marker> previous_marker = null;
 
-    LocationRequest locationRequest = new LocationRequest()
+    LocationRequest locationRequest = LocationRequest.create()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
             .setInterval(UPDATE_INTERVAL_MS)
             .setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
@@ -95,7 +95,7 @@ public class PharmacyLocation extends AppCompatActivity
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pharmacy_location);
 
         previous_marker = new ArrayList<Marker>();
 
@@ -459,7 +459,7 @@ public class PharmacyLocation extends AppCompatActivity
 
 
         if (addresses == null || addresses.size() == 0) {
-            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
             return "주소 미발견";
 
         } else {

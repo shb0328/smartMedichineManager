@@ -118,8 +118,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="89dp"
-        android:layout_height="107dp"
+        android:layout_width="107dp"
+        android:layout_height="118dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
@@ -135,10 +135,10 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="88dp"
-            android:layout_height="89dp"
+            android:layout_width="match_parent"
+            android:layout_height="103dp"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/cursur" />
+            app:srcCompat="@drawable/cursur2" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
