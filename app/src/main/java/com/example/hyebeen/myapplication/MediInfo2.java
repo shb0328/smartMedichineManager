@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +30,25 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MediInfo2 extends AppCompatActivity {
 
     private static String IP_ADDRESS = "192.168.43.46";
     private static String TAG = "phptest";
+
+    private static String TAG1 = "phptest_MainActivity";
+
+    private static final String TAG_JSON="storage";
+    private static final String TAG_ID = "num";
+    private static final String TAG_NAME = "cnt";
+    private static final String TAG_ADDRESS ="date";
+
+    private TextView mTextViewResult;
+    ArrayList<HashMap<String, String>> mArrayList;
+    ListView mlistView;
+    String mJsonString;
+
 
 
 
@@ -43,6 +60,7 @@ public class MediInfo2 extends AppCompatActivity {
 
     private TextView one;
     private TextView all;
+    private TextView date;
 
     private Button cautionButton;
     private Button donotButton;
@@ -64,6 +82,14 @@ public class MediInfo2 extends AppCompatActivity {
 
         //DBHelper생성
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+
+//        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
+//        mlistView = (ListView) findViewById(R.id.listView_main_list);
+        mArrayList = new ArrayList<>();
+
+        GetData task1 = new GetData();
+        task1.execute("http://192.168.43.46/cntjson.php");
+
 
 
         //-----------------ButtonNum 받아오기---------------//
@@ -91,12 +117,17 @@ public class MediInfo2 extends AppCompatActivity {
         donotButton = (Button) findViewById(R.id.donotButton);
         alamSetButton = (Button) findViewById(R.id.alamSetting);
         resetButton = (Button) findViewById(R.id.resetButton);
+        date=(TextView)findViewById(R.id.lastTime);
+
 
         //
         num.setText(Integer.toString(buttonNum));
         mediName.setText(dbHelper.findname(buttonNum));
         mediInfo.setText(dbHelper.findinfo(buttonNum));
         all.setText(Integer.toString(dbHelper.findall(buttonNum)));
+//        String onee;
+//        onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
+//        one.setText(onee);
 
 
 
@@ -104,6 +135,9 @@ public class MediInfo2 extends AppCompatActivity {
 
 
         //
+
+
+
 
 
         //--------------------Listener--------------------//
@@ -149,6 +183,151 @@ public class MediInfo2 extends AppCompatActivity {
 
 
     }/**********************END of OnCreate*************************/
+
+
+    private class GetData extends AsyncTask<String, Void, String>{
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(MediInfo2.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+//            mTextViewResult.setText(result);
+            Log.d(TAG1, "response  - " + result);
+
+            if (result == null){
+
+                mTextViewResult.setText(errorString);
+            }
+            else {
+
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String serverURL = params[0];
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG1, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG1, "InsertData: Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+
+    }
+
+
+    private void showResult(){
+        try {
+            final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for(int i=0;i<jsonArray.length();i++){
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String id = item.getString(TAG_ID);
+                String name = item.getString(TAG_NAME);
+                String address = item.getString(TAG_ADDRESS);
+
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                hashMap.put(TAG_ID, id);
+                hashMap.put(TAG_NAME, name);
+                hashMap.put(TAG_ADDRESS, address);
+
+                mArrayList.add(hashMap);
+            }
+
+            ListAdapter adapter = new SimpleAdapter(
+                    MediInfo2.this, mArrayList, R.layout.item_list,
+                    new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
+                    new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
+            );
+
+//            mlistView.setAdapter(adapter);
+            String onee;
+            onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
+            one.setText(onee);
+            date.setText(mArrayList.get(buttonNum-1).get(TAG_ADDRESS));
+
+        } catch (JSONException e) {
+
+            Log.d(TAG, "showResult : ", e);
+        }
+
+    }
+
+
+    public int getcnt(int num){
+        for(int i =0;i<4;i++){
+            if(Integer.parseInt(mArrayList.get(i).get(TAG_ID).toString())==buttonNum){
+                return Integer.parseInt(mArrayList.get(i).get(TAG_NAME).toString());
+            }
+        }
+        return 0;
+    }
 
 
     /**

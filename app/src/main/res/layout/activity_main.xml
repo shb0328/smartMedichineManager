@@ -117,4 +117,28 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="107dp"
+        android:layout_height="118dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="주위 약국 찾기" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="103dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/cursur2" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

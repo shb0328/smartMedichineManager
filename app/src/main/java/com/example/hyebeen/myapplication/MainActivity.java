@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button b2;
     Button b3;
     Button b4;
+    ImageButton Location;
 
     //localDB
 
@@ -25,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseInstanceId.getInstance().getToken();
 
         //DBHelper생성
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
@@ -133,6 +141,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent_x);
                 }
 
+            }
+        });
+
+        Location=(ImageButton)findViewById(R.id.imageButton);
+        Location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getApplicationContext(),PharmacyLocation.class);
+                startActivity(intent);
             }
         });
 
