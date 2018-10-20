@@ -75,7 +75,6 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
                 finish();
             }
         });
-
         //일시 설정 클래스로 현재 시각을 설정
 
         mDate = (DatePicker)findViewById(R.id.date_picker);
