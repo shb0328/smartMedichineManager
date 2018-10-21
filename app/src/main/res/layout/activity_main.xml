@@ -141,4 +141,14 @@
             app:srcCompat="@drawable/cursur2" />
     </LinearLayout>
 
+    <ImageButton
+        android:id="@+id/naverBtn"
+        android:layout_width="194dp"
+        android:layout_height="109dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/naver_icon" />
+
 </android.support.constraint.ConstraintLayout>
