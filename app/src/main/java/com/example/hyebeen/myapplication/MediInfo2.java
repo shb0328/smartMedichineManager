@@ -166,6 +166,10 @@ public class MediInfo2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),PopUp_alamSetting.class);
+
+                //test
+                Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT).show();
+
                 startActivityForResult(intent, 1);
             }
         });
