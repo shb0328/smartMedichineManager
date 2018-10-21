@@ -32,7 +32,7 @@
                 android:layout_width="450dp"
                 android:layout_height="109dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/b" />
+                app:srcCompat="@drawable/medicine_title" />
 
         </LinearLayout>
 
