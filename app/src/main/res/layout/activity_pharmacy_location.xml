@@ -13,10 +13,14 @@
         class="com.google.android.gms.maps.MapFragment" />
 
     <Button
-        android:text="장소검색"
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.2"
-        android:id="@+id/button"/>
+        android:background="#8DCEA8"
+        android:text="약국 검색"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="50dp"/>
 
 </LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">스마트 알약 보관함</string>
+    <string name="app_name">약 먹자</string>
     <string name="register">등록</string>
     <string name="slash">/</string>
     <string name="search">search</string>
