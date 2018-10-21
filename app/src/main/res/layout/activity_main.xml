@@ -4,21 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context="com.example.hyebeen.myapplication.MainActivity">
 
     <LinearLayout
-        android:layout_width="315dp"
+        android:layout_width="257dp"
         android:layout_height="309dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,29 +29,11 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="113dp"
-                android:layout_height="48dp"
+                android:layout_width="450dp"
+                android:layout_height="109dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/pills" />
+                app:srcCompat="@drawable/b" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="69dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:text="스마트 알약 보관함"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.621"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.293"
-                tools:text="스마트 알약 보관함" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +48,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <LinearLayout
-                android:layout_width="158dp"
+                android:layout_width="132dp"
                 android:layout_height="169dp"
                 android:orientation="vertical">
 
@@ -117,38 +101,33 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="107dp"
-        android:layout_height="118dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="주위 약국 찾기" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="103dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/cursur2" />
-    </LinearLayout>
-
     <ImageButton
         android:id="@+id/naverBtn"
-        android:layout_width="194dp"
-        android:layout_height="109dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="32dp"
+        android:layout_width="106dp"
+        android:layout_height="95dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/naver_icon" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/naver_icon2" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="150dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/naverBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/a" />
 
 </android.support.constraint.ConstraintLayout>
