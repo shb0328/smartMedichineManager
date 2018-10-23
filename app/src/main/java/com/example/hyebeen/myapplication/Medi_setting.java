@@ -1,5 +1,6 @@
 package com.example.hyebeen.myapplication;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,7 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -32,7 +35,7 @@ import java.util.ArrayList;
 Setting
  ****/
 
-public class Medi_setting extends AppCompatActivity {
+public class Medi_setting extends Activity {
 
     private static String IP_ADDRESS = "192.168.43.46";
     private static String TAG = "phptest";
@@ -46,7 +49,15 @@ public class Medi_setting extends AppCompatActivity {
     String[] items={"","","","","","","","","","","","","","","","","","","","","","","","",""
             ,"","","","","","","","","","","","","","","","","","","","","","","",""};
 
-    //local DB
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //바깥레이어 클릭시 안닫히게
+        if(event.getAction()==MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
+    }
 
 
 
@@ -55,6 +66,8 @@ public class Medi_setting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //타이틀바 없애기
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.medi_set);
 
         final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);

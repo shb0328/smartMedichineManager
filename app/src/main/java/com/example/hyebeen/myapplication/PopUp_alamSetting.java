@@ -46,7 +46,7 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
 
         //타이틀바 없애기
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.pop_up_alam_setting);
+        setContentView(R.layout.pop_up_alamset);
 
         //통지 매니저를 취득
         mNotification = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
@@ -143,10 +143,10 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        //안드로이드 백버튼 막기
-        return;
-    }
+//    @Override
+//    public void onBackPressed() {
+//        //안드로이드 백버튼 막기
+//        return;
+//    }
 
 }
