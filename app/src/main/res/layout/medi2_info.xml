@@ -25,7 +25,7 @@
             <TextView
                 android:id="@+id/num"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
@@ -39,7 +39,7 @@
             <TextView
                 android:id="@+id/medi2_num"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_weight="1"
@@ -54,7 +54,7 @@
             <TextView
                 android:id="@+id/medi2_name"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -78,7 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="TODO"
-                app:srcCompat="@android:drawable/btn_dialog"
+                app:srcCompat="@drawable/medi_photo_loading"
                 tools:layout_editor_absoluteX="41dp"
                 tools:layout_editor_absoluteY="106dp" />
 
