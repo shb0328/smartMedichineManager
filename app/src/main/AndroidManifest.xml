@@ -32,7 +32,9 @@
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".MediInfo2" />
         <activity android:name=".Medi_setting" />
-        <activity android:name=".PopUp_alamSetting"/>
+        <activity
+            android:name=".PopUp_alamSetting"
+            android:theme="@android:style/Theme.Dialog"/>
 
         <service
             android:name=".MyFireBaseMessagingService"
