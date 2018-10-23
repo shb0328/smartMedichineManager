@@ -31,7 +31,9 @@
             android:name=".PopUp_reset"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".MediInfo2" />
-        <activity android:name=".Medi_setting" />
+        <activity
+            android:name=".Medi_setting"
+            android:theme="@android:style/Theme.Dialog"/>
         <activity
             android:name=".PopUp_alamSetting"
             android:theme="@android:style/Theme.Dialog"/>
