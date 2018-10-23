@@ -184,8 +184,6 @@ public class MediInfo2 extends AppCompatActivity {
             }
         });
 
-
-
     }/**********************END of OnCreate*************************/
 
 
@@ -315,6 +313,11 @@ public class MediInfo2 extends AppCompatActivity {
             onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
             one.setText(onee);
             date.setText(mArrayList.get(buttonNum-1).get(TAG_ADDRESS));
+
+            if(Integer.parseInt(one.getText().toString())>=Integer.parseInt(all.getText().toString())){
+                Intent intent = new Intent(getApplicationContext(),All_eaten.class);
+                startActivity(intent);
+            }
 
         } catch (JSONException e) {
 
