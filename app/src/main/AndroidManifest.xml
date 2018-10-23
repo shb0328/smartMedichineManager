@@ -16,8 +16,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAvMOOh8lsFMhc8TzDTXaezHs6Z0l9eHnM" />
 
-        <activity android:name=".MainActivity"
-            >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,12 +30,14 @@
             android:name=".PopUp_reset"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".MediInfo2" />
+
         <activity
             android:name=".Medi_setting"
             android:theme="@android:style/Theme.Dialog"/>
         <activity
             android:name=".PopUp_alamSetting"
             android:theme="@android:style/Theme.Dialog"/>
+
 
         <service
             android:name=".MyFireBaseMessagingService"
@@ -65,7 +66,10 @@
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".All_eaten"
+            android:theme="@android:style/Theme.Dialog"></activity>
     </application>
 
 </manifest>
