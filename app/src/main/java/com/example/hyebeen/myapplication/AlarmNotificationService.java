@@ -44,11 +44,6 @@ public class AlarmNotificationService extends IntentService {
                 .setContentText(msg).setAutoCancel(true);
         alamNotificationBuilder.setContentIntent(contentIntent);
 
-//        Notification.Builder builder = new Notification.Builder(this)
-//                .setContentTitle("title")
-//                .setContentText("body")
-//                .setSmallIcon(getSmallIcon())
-//                .setAutoCancel(true);
 
         //notiy notification manager about new notification
         alarmNotificationManager.notify(NOTIFICATION_ID, alamNotificationBuilder.build());

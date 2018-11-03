@@ -118,11 +118,12 @@ public class MediInfo2 extends AppCompatActivity {
         date=(TextView)findViewById(R.id.lastTime);
 
 
-        //
+        // Text Setting
         num.setText(Integer.toString(buttonNum));
         mediName.setText(dbHelper.findname(buttonNum));
         mediInfo.setText(dbHelper.findinfo(buttonNum));
         all.setText(Integer.toString(dbHelper.findall(buttonNum)));
+
         //
 
 
@@ -293,7 +294,6 @@ public class MediInfo2 extends AppCompatActivity {
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
 
-//            mlistView.setAdapter(adapter);
             String onee;
             onee=Integer.toString(getcnt(buttonNum)*dbHelper.findone(buttonNum));
             one.setText(onee);
