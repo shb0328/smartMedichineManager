@@ -34,7 +34,7 @@ public class PopUp_reset extends Activity {
     //Yes 버튼 클릭
     public void resetButton(View v) {
         //DBHelper생성
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "Medicine.db", null, 1);
         dbHelper.delete(buttonNum);
 
         //데이터 전달하기
