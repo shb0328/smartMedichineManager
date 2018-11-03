@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class All_eaten extends Activity {
     TextView txtText;
-//    Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

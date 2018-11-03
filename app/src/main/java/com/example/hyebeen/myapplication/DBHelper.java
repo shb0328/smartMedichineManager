@@ -91,6 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
     public boolean isExist(int buttonNum) {
+        //약이 등록되어 있는지 확인
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
@@ -105,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String findinfo(int num){
+        //info정보를 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -117,6 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String findcaution(int num){
+        //caution정보를 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -129,6 +132,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String finddonot(int num){
+        //donot정보를 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -141,6 +145,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String findname(int num){
+        //약의 name정보를 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -153,6 +158,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public int findall(int num){
+        //전체양을 DB에서 받아오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -165,6 +171,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public String findimg(int num){
+        //알약의 image를 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
@@ -177,6 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public int findone(int num){
+        //1회 복용량을 DB에서 불러오기
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
