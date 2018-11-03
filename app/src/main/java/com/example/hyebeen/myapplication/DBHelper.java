@@ -17,10 +17,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // 새로운 테이블 생성
-        /* 이름은 MONEYBOOK이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
+        /* 이름은 MEDICINE이고, 자동으로 값이 증가하는 _id 정수형 기본키 컬럼과
         item 문자열 컬럼, price 정수형 컬럼, create_at 문자열 컬럼으로 구성된 테이블을 생성. */
 
-        db.execSQL("CREATE TABLE MONEYBOOKS (_id INTEGER PRIMARY KEY AUTOINCREMENT, num INTEGER, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER, img TEXT);");
+        db.execSQL("CREATE TABLE MEDICINE (_id INTEGER PRIMARY KEY AUTOINCREMENT, num INTEGER, name TEXT, info TEXT, caution TEXT, donot TEXT, allnum INTEGER, one INTEGER, cnt INTEGER, img TEXT);");
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
@@ -34,14 +34,14 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         cnt=allnum/one;
-        db.execSQL("INSERT INTO MONEYBOOKS VALUES(null," + num + ", '" + name + "', '" + info + "', '" + caution + "', '" + donot + "', " + allnum + ", " + one + ", " + cnt + ", '" + img + "');");
+        db.execSQL("INSERT INTO MEDICINE VALUES(null," + num + ", '" + name + "', '" + info + "', '" + caution + "', '" + donot + "', " + allnum + ", " + one + ", " + cnt + ", '" + img + "');");
         db.close();
     }
 
     public void update(String item, int price) {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행의 가격 정보 수정
-        db.execSQL("UPDATE MONEYBOOKS SET price=" + price + " WHERE item='" + item + "';");
+        db.execSQL("UPDATE MEDICINE SET price=" + price + " WHERE item='" + item + "';");
         db.close();
     }
 
@@ -49,13 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // 입력한 항목과 일치하는 행 삭제
         Log.d("qwe",""+num);
-        db.execSQL("DELETE FROM MONEYBOOKS WHERE num = "+num+";");
+        db.execSQL("DELETE FROM MEDICINE WHERE num = "+num+";");
         db.close();
     }
 
     public void drop(){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DROP TABLE MONEYBOOKS;");
+        db.execSQL("DROP TABLE MEDICINE;");
     }
 
     public String getResult() {
@@ -64,7 +64,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String result = "";
 
         // DB에 있는 데이터를 쉽게 처리하기 위해 Cursor를 사용하여 테이블에 있는 모든 데이터 출력
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()) {
             result += cursor.getString(0)
                     + " : "
@@ -93,7 +93,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean isExist(int buttonNum) {
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
 
 
         while (cursor.moveToNext()){
@@ -108,7 +108,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getString(3);
@@ -120,7 +120,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getString(4);
@@ -132,7 +132,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getString(5);
@@ -144,7 +144,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getString(2);
@@ -156,7 +156,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getInt(6);
@@ -168,7 +168,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getString(9);
@@ -180,7 +180,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
 
-        Cursor cursor = db.rawQuery("SELECT * FROM MONEYBOOKS", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM MEDICINE", null);
         while (cursor.moveToNext()){
             if(cursor.getInt(1)==num)
                 return cursor.getInt(7);

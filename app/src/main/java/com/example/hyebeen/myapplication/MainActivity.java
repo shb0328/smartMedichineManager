@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseInstanceId.getInstance().getToken();
 
         //DBHelper생성
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "Medicine.db", null, 1);
 
         //button1
         b1 = (Button)findViewById(R.id.button1);

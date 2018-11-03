@@ -70,7 +70,7 @@ public class Medi_setting extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.medi_set);
 
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "Medicine.db", null, 1);
 
 
 
