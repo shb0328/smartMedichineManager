@@ -120,10 +120,6 @@ public class PopUp_alamSetting  extends Activity implements DatePicker.OnDateCha
     private static final int ALARM_REQUEST_CODE = 133;
 
     private PendingIntent pendingIntent() {
-
-//        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//        PendingIntent pi = PendingIntent.getActivity(this, 0, i, 0);
-//        return pi;
         Intent alarmIntent = new Intent(getApplicationContext(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), ALARM_REQUEST_CODE, alarmIntent, 0);
         return pendingIntent;

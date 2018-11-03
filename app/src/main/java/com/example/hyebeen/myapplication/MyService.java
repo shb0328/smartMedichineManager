@@ -36,8 +36,7 @@ public class MyService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //return super.onStartCommand(intent, flags, startId);
         Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        myServiceHandler handler = new myServiceHandler(); //??
-        //Handler handler = new Handler();
+        myServiceHandler handler = new myServiceHandler();
         thread = new ServiceThread(handler);
         thread.start();
         return START_STICKY;
@@ -77,7 +76,7 @@ public class MyService extends Service {
             //auto alarm off
             Notifi.flags = Notification.FLAG_AUTO_CANCEL;
 
-            Notifi_M.notify(777, Notifi); //id ????
+            Notifi_M.notify(777, Notifi);
 
         }
     }
