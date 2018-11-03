@@ -81,7 +81,7 @@ public class MediInfo2 extends AppCompatActivity {
         setContentView(R.layout.medi2_info);
 
         //DBHelper생성
-        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "Medicine.db", null, 1);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext(), "MoneyBooks.db", null, 1);
 
 //        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
 //        mlistView = (ListView) findViewById(R.id.listView_main_list);
