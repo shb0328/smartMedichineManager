@@ -60,7 +60,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wakeLock =
                 pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
-                                | PowerManager.ACQUIRE_CAUSES_WAKEUP,"TAG");
+                                | PowerManager.ACQUIRE_CAUSES_WAKEUP,"smartPillsManager:TAG");
         wakeLock.acquire(5000);
 
         notificationManager.notify(0,notificationBuilder.build());

@@ -25,19 +25,6 @@ public class MediData{
         this.num = num;
     }
 
-    public int getMember_one(){return one;}
-    public void setMember_one(int member_one){this.one =  member_one;}
-
-    public int getMember_all(){return all;}
-    public void setMember_all(int member_all){this.all=  member_all;}
-
-    public int getCnt() {
-        return cnt;
-    }
-    public void setCnt(int cnt) {
-        this.cnt = cnt;
-    }
-
     public String getMember_info() {
         return info;
     }
